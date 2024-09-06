@@ -34,3 +34,7 @@ To explore the materials from this course, clone this repository and navigate th
 
 ```bash
 git clone https://github.com/bjarnerossen/dotnet-web-app-development-course.git
+```
+
+---
+> **DISCLAIMER:** *The code provided in this repository is for educational purposes only. It is intended to demonstrate various concepts and techniques related to programming and software development. The code is not intended to be used as a reference for academic work or submissions.*
