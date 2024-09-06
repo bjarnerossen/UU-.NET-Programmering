@@ -1,4 +1,4 @@
-# .NET Development Course Uppsala HT 2024
+# .NET Development (2IS225) Course Uppsala HT 2024
 
 ## Overview
 
