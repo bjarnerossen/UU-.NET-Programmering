@@ -1,0 +1,15 @@
+/Users/bjarne/Documents/GissaNummer/bin/Debug/net8.0/GissaNummer
+/Users/bjarne/Documents/GissaNummer/bin/Debug/net8.0/GissaNummer.deps.json
+/Users/bjarne/Documents/GissaNummer/bin/Debug/net8.0/GissaNummer.runtimeconfig.json
+/Users/bjarne/Documents/GissaNummer/bin/Debug/net8.0/GissaNummer.dll
+/Users/bjarne/Documents/GissaNummer/bin/Debug/net8.0/GissaNummer.pdb
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/GissaNummer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/GissaNummer.AssemblyInfoInputs.cache
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/GissaNummer.AssemblyInfo.cs
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/GissaNummer.csproj.CoreCompileInputs.cache
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/GissaNummer.sourcelink.json
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/GissaNummer.dll
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/refint/GissaNummer.dll
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/GissaNummer.pdb
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/GissaNummer.genruntimeconfig.cache
+/Users/bjarne/Documents/GissaNummer/obj/Debug/net8.0/ref/GissaNummer.dll
