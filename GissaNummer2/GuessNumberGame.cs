@@ -2,6 +2,7 @@ using System;
 
 namespace GuessNumberGame
 {
+    // Huvudklassen för spelet
     public class GuessNumberGame
     {
         private bool runGame;
@@ -9,6 +10,7 @@ namespace GuessNumberGame
         private readonly HandleHighScore saveScoreList;
         private readonly Random random;
 
+        // Konstruktorn som initierar de nödvändiga instanserna för spelet
         public GuessNumberGame()
         {
             gameScore = new Score();
@@ -16,6 +18,7 @@ namespace GuessNumberGame
             random = new Random();
         }
 
+        // Startar spelet och kör det i en loop beroende på användarens val
         public void PlayGame(bool playGame)
         {
             runGame = playGame;
@@ -24,10 +27,11 @@ namespace GuessNumberGame
                 StartNewGame();
 
                 Console.WriteLine("Vill du spela igen? (ja/nej)");
-                runGame = WillPlayAgain();
+                runGame = WillPlay();
             }
         }
 
+        // Startar en ny omgång, låter spelaren gissa tills rätt svar ges
         private void StartNewGame()
         {
             int targetNumber = random.Next(1, 101);
@@ -47,6 +51,7 @@ namespace GuessNumberGame
             SaveScore(guessCount);
         }
 
+        // Bearbetar spelarens gissning och ger feedback om den är rätt, för hög eller för låg
         private bool ProcessGuess(int guess, int targetNumber, int guessCount)
         {
             if (guess == targetNumber)
@@ -65,6 +70,7 @@ namespace GuessNumberGame
             return false;
         }
 
+        // Sparar spelarens resultat (namn och poäng) i highscore-listan (highscore.txt)
         private void SaveScore(int guessCount)
         {
             string playerName = GetValidPlayerName();
@@ -74,6 +80,7 @@ namespace GuessNumberGame
             saveScoreList.SaveHighScore(gameScore);
         }
 
+        // Matar in en giltig gissning från spelaren, dvs. ett tal mellan 1 och 100
         private int GetValidGuess()
         {
             int guess;
@@ -93,6 +100,7 @@ namespace GuessNumberGame
             }
         }
 
+        // Hämtar ett giltigt spelarnamn som inte är tomt och max. 20 tecken långt
         private string GetValidPlayerName()
         {
             const int maxCharacters = 20;
@@ -117,7 +125,8 @@ namespace GuessNumberGame
             return playerName;
         }
 
-        private bool WillPlayAgain()
+        // Frågar spelaren om de vill fortsätta spela och validerar input
+        private bool WillPlay()
         {
             while (true)
             {

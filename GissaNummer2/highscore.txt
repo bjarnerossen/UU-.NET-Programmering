@@ -1,4 +1,6 @@
-,5
 Bjarne,6
 Peter,6
 2342,10
+Bjarne,7
+Lars,7
+Lars,6

@@ -4,10 +4,12 @@ using System.IO;
 
 namespace GuessNumberGame
 {
+    // Hanterar att spara och hämta högsta poäng till/från en fil
     public class HandleHighScore
     {
         private const string filePath = "highscore.txt";
 
+        // Sparar ett highscore till filen, returnerar true om det lyckas
         public bool SaveHighScore(Score score)
         {
             try
@@ -24,6 +26,7 @@ namespace GuessNumberGame
             }
         }
 
+        // Hämtar highscore från filen och returnerar en lista med Score-objekt
         public List<Score> FetchHighScore()
         {
             List<Score> scores = new List<Score>();
@@ -45,6 +48,7 @@ namespace GuessNumberGame
                 }
             }
 
+            // Sorterar listan (lägst först)
             scores.Sort();
             return scores;
         }

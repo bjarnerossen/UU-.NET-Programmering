@@ -8,12 +8,14 @@ namespace GuessNumberGame
         private HandleHighScore scoreList;
         private List<Score> scores;
 
+        // Konstruktor för UI-klassen, hämtar highscore-listan när UI skapas
         public UI()
         {
             scoreList = new HandleHighScore();
             scores = scoreList.FetchHighScore();
         }
 
+        // Ritningen av spelets användargränssnitt och visar highscore om det finns
         public bool DrawUI()
         {
             Console.WriteLine("Välkommen till Gissa Numret!");
@@ -32,6 +34,7 @@ namespace GuessNumberGame
             return PromptToPlay();
         }
 
+        // Frågar spelaren om de vill spela och hanterar deras input
         private bool PromptToPlay()
         {
             while (true)
