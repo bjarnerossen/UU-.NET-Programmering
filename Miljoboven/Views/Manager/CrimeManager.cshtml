@@ -1,0 +1,81 @@
+<h2>Detaljer för ärendet</h2>
+<p class="info">Du är inloggad som avdelningschef</p>
+<h3>Ärende: @Model.CaseNumber</h3>
+
+<section id="leftColumn">
+    <h3>Anmälan</h3>
+    <p>
+        <span class="label">Typ av brott: </span><br />
+        @Model.TypeOfCrime
+    </p>
+    <p>
+        <span class="label">Brottsplats: </span><br />
+        @Model.CrimeScene
+    </p>
+    <p>
+        <span class="label">Brottsdatum: </span><br />
+        @Model.CrimeDate.ToString("yyyy-MM-dd")
+    </p>
+    <p>
+        <span class="label">Anmälare: </span><br />
+        @Model.Reporter
+    </p>
+    <p>
+        <span class="label">Telefon: </span><br />
+        @Model.ReporterPhone
+    </p>
+    <p>
+        <span class="label">Observationer:</span><br />
+        @Model.Observations
+    </p>
+</section>
+
+<section id="rightColumn">
+    <h3>Utredning</h3>
+    <p>
+        <span class="label">Status:</span><br />
+        @Model.Status
+    </p>
+    <p>
+        <span class="label">Ansvarig avdelning: </span><br />
+        @Model.Department
+    </p>
+    <p>
+        <span class="label">Handläggare: </span><br />
+        @Model.Investigator
+    </p>
+    <p>
+        <span class="label">Ytterligare information: </span><br />
+        @Model.AdditionalInfo
+    </p>
+    <p>
+        <span class="label">Händelser: </span><br />
+        @Model.Events
+    </p>
+    <p>
+        <span class="label">Provtagning: </span><br />
+        @Model.SampleFile
+    </p>
+    <p>
+        <span class="label">Bilder: </span><br />
+        <img src="~/images/@Model.ImageFileName" alt="klicka på bilden" />
+    </p>
+</section>
+
+<section id="bottomColumn">
+    <h3>Redigera ärende</h3>
+    <form method="post" action="@Url.Action("UpdateCase", "Manager")">
+        <p>Ange handläggare:
+            <select name="investigator">
+                <option selected="selected">Välj</option>
+                @foreach (var investigator in Model.Investigators)
+                {
+                    <option value="@investigator.Id">@investigator.Name</option>
+                }
+            </select>
+        </p>
+        <p><input type="checkbox" name="noAction" value="true" /> Ingen åtgärd: <input type="text" name="reason"
+                value="Ange motivering" /></p>
+        <p><input class="button" type="submit" value="Spara" /></p>
+    </form>
+</section>
