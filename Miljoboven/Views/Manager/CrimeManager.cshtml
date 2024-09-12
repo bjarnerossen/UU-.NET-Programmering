@@ -1,32 +1,38 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_LoginManagerLayout";
+}
+
 <h2>Detaljer för ärendet</h2>
 <p class="info">Du är inloggad som avdelningschef</p>
-<h3>Ärende: @Model.CaseNumber</h3>
+<h3>Ärende: 2023-45-0201</h3>
 
 <section id="leftColumn">
     <h3>Anmälan</h3>
     <p>
         <span class="label">Typ av brott: </span><br />
-        @Model.TypeOfCrime
+        Nedskräpning
     </p>
     <p>
         <span class="label">Brottsplats: </span><br />
-        @Model.CrimeScene
+        Skogslunden vid Jensens gård
     </p>
     <p>
         <span class="label">Brottsdatum: </span><br />
-        @Model.CrimeDate.ToString("yyyy-MM-dd")
+        2023-04-24
     </p>
     <p>
         <span class="label">Anmälare: </span><br />
-        @Model.Reporter
+        Maja Färjedal
     </p>
     <p>
         <span class="label">Telefon: </span><br />
-        @Model.ReporterPhone
+        432-554 55 22
     </p>
     <p>
         <span class="label">Observationer:</span><br />
-        @Model.Observations
+        Jag upptäckte soporna på en promenad den 24 april
     </p>
 </section>
 
@@ -34,48 +40,51 @@
     <h3>Utredning</h3>
     <p>
         <span class="label">Status:</span><br />
-        @Model.Status
+        Pågående
     </p>
     <p>
         <span class="label">Ansvarig avdelning: </span><br />
-        @Model.Department
+        Tekniska avloppshanteringen
     </p>
     <p>
         <span class="label">Handläggare: </span><br />
-        @Model.Investigator
+        Ada Bengtsson
     </p>
     <p>
         <span class="label">Ytterligare information: </span><br />
-        @Model.AdditionalInfo
+        Bland soporna hittades ett brev adresserat till Gösta Olsson
     </p>
     <p>
         <span class="label">Händelser: </span><br />
-        @Model.Events
+        Brev skickat till Gösta Olsson om soporna och anmälan som är gjord
+        till polisen 2023-05-20
     </p>
     <p>
         <span class="label">Provtagning: </span><br />
-        @Model.SampleFile
+        Provtagning.pdf
     </p>
     <p>
         <span class="label">Bilder: </span><br />
-        <img src="~/images/@Model.ImageFileName" alt="klicka på bilden" />
+        <img src="../images/imagetest.jpg" alt="klicka på bilden" />
     </p>
 </section>
 
 <section id="bottomColumn">
     <h3>Redigera ärende</h3>
-    <form method="post" action="@Url.Action("UpdateCase", "Manager")">
-        <p>Ange handläggare:
-            <select name="investigator">
-                <option selected="selected">Välj</option>
-                @foreach (var investigator in Model.Investigators)
-                {
-                    <option value="@investigator.Id">@investigator.Name</option>
-                }
-            </select>
-        </p>
-        <p><input type="checkbox" name="noAction" value="true" /> Ingen åtgärd: <input type="text" name="reason"
-                value="Ange motivering" /></p>
-        <p><input class="button" type="submit" value="Spara" /></p>
-    </form>
+    <p>
+        Ange handläggare:
+        <select name="investigator">
+            <option selected="selected">Välj</option>
+            <option value="inv1">Ada Bengtsson</option>
+            <option value="inv2">Bengt Cederström</option>
+            <option value="inv3">Cecilia Danielsson</option>
+            <option value="inv4">David Ekström</option>
+            <option value="inv5">Erik Falkenberg</option>
+        </select>
+    </p>
+    <p>
+        <input type="checkbox" name="noAction" value="true" /> Ingen åtgärd:
+        <input type="text" name="reason" value="Ange motivering" />
+    </p>
+    <p><input class="button" type="submit" value="Spara" /></p>
 </section>

@@ -1,8 +1,10 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewBag.Title = "Din anmälan av miljöbrott";
+    Layout = "_PreLoginLayout";
 }
 
-<div id="content">
+<section id="mainColumn">
     <h2>Din anmälan av miljöbrott</h2>
     <p class="info">Du är inloggad som samordnare</p>
 
@@ -33,7 +35,7 @@
         Jag upptäckte soporna på en promenad den 24 april<br />
     </p>
     <p>
-        <a class="button" asp-controller="Report" asp-action="Create" id="link">Tillbaka</a>
-        <a class="button" asp-controller="Report" asp-action="Confirmation">Bekräfta</a>
+        <a class="button" asp-controller="Coordinator" asp-action="ReportCrime" id="link">Tillbaka</a>
+        <a class="button" asp-controller="Coordinator" asp-action="Thanks">Bekräfta</a>
     </p>
-</div><!-- End Content -->
+</section><!-- End Left -->
