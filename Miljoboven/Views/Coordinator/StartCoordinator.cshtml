@@ -1,17 +1,16 @@
-@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<Miljoboven.Models.Errand>
 
 @{
-    Layout = "_LoginCoordinatorLayout";
+    Layout = "_LoginInvestigatorLayout";
 }
 
 <h2>Ärenden</h2>
-<p class="info">Du är inloggad som samordnare</p>
+<p class="info">Du är inloggad som handläggare</p>
 
-<form method="get" asp-action="Index">
+<form method="get" action="StartInvestigator">
     <table id="managerForm">
         <tr>
             <td class="label">Välj status:</td>
-            <td class="label">Välj avdelning:</td>
             <td>&nbsp;</td>
             <td class="label">Ärendenummer:</td>
             <td>&nbsp;</td>
@@ -19,31 +18,21 @@
         <tr>
             <td>
                 <select name="status">
-                    <option selected="selected">Välj alla</option>
-                    <option value="stat0">Inrapporterad</option>
-                    <option value="stat1">Ingen åtgärd</option>
-                    <option value="stat2">Påbörjad</option>
-                    <option value="stat3">Klar</option>
-                </select>
-            </td>
-            <td>
-                <select name="department">
-                    <option selected="selected">Välj alla</option>
-                    <option value="teknik">Tekniska avloppshanteringen</option>
-                    <option value="klimat">Klimat och energi</option>
-                    <option value="miljo">Miljö och Hälsoskydd</option>
-                    <option value="natur">Natur och Skogsvård</option>
-                    <option value="avfall">Renhållning och Avfall</option>
+                    <option value="">Välj alla</option>
+                    <option value="Inrapporterad">Inrapporterad</option>
+                    <option value="Ingen åtgärd">Ingen åtgärd</option>
+                    <option value="Påbörjad">Påbörjad</option>
+                    <option value="Klar">Klar</option>
                 </select>
             </td>
             <td><input class="button" type="submit" value="Hämta lista" /></td>
-            <td><input name="casenumber" /></td>
+            <td><input name="caseNumber" placeholder="Ärendenummer" /></td>
             <td><input class="button" type="submit" value="Sök" /></td>
         </tr>
     </table>
 </form>
 
-<!--Nedan ser man en lista på ärenden-->
+<!-- Dynamically list errands -->
 <table>
     <tr>
         <th>Ärende anmält</th>
@@ -53,60 +42,20 @@
         <th>Avdelning</th>
         <th>Handläggare</th>
     </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a href="crimeCoordinator.html">2023-45-0201</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a href="crimeCoordinator.html">2023-45-0202</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Pågående</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ada Bengtsson</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a href="crimeCoordinator.html">2023-45-0203</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a href="crimeCoordinator.html">2023-45-0204</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a href="crimeCoordinator.html">2023-45-0205</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Pågående</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Bengt Cederström</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a href="crimeCoordinator.html">2023-45-0206</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a href="crimeCoordinator.html">2023-45-0206</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
+
+    @foreach (var errand in Model)
+    {
+        <tr>
+            <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
+            <td>
+                <a asp-controller="Investigator" asp-action="Details" asp-route-id="@errand.ErrandId">
+                    @errand.ErrandId
+                </a>
+            </td>
+            <td>@errand.TypeOfCrime</td>
+            <td>@errand.StatusId</td>
+            <td>@errand.DepartmentId</td>
+            <td>@errand.EmployeeId ?? "Ingen utredare satt"</td>
+        </tr>
+    }
 </table>
