@@ -5,6 +5,8 @@ namespace Miljoboven.Models
     public interface IMiljobovenRepository
     {
         List<Errand> GetErrands();
+        List<string> GetStatuses();
+        List<string> GetDepartments();
     }
 
     public class MiljobovenRepository : IMiljobovenRepository
@@ -87,9 +89,23 @@ namespace Miljoboven.Models
                 EmployeeId = "Ej tillsatt"
             }
         };
+
+        // Return all errands
         public List<Errand> GetErrands()
         {
             return _errands;
+        }
+
+        // Get unique statuses from list of errands
+        public List<string> GetStatuses()
+        {
+            return _errands.Select(e => e.StatusId).Distinct().ToList();
+        }
+
+        // Get unique departments from the list of errands
+        public List<string> GetDepartments()
+        {
+            return _errands.Select(e => e.DepartmentId).Distinct().ToList();
         }
     }
 }

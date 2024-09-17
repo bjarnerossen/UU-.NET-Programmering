@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Register the MiljobovenRepository service
-builder.Services.AddSingleton<IMiljobovenRepository, MiljobovenRepository>();
+builder.Services.AddTransient<IMiljobovenRepository, MiljobovenRepository>();
 
 var app = builder.Build();
 

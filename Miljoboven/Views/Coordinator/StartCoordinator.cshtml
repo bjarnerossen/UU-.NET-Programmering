@@ -11,6 +11,7 @@
     <table id="managerForm">
         <tr>
             <td class="label">Välj status:</td>
+            <td class="label">Välj avdelning:</td>
             <td>&nbsp;</td>
             <td class="label">Ärendenummer:</td>
             <td>&nbsp;</td>
@@ -18,21 +19,30 @@
         <tr>
             <td>
                 <select name="status">
-                    <option value="">Välj alla</option>
-                    <option value="Inrapporterad">Inrapporterad</option>
-                    <option value="Ingen åtgärd">Ingen åtgärd</option>
-                    <option value="Påbörjad">Påbörjad</option>
-                    <option value="Klar">Klar</option>
+                    <option selected="">Välj alla</option>
+                    @foreach (var status in ViewBag.Statuses)
+                    {
+                        <option value="@status">@status</option>
+                    }
+                </select>
+            </td>
+            <td>
+                <select name="department">
+                    <option selected="">Välj alla</option>
+                    @foreach (var department in ViewBag.Departments)
+                    {
+                        <option value="@department">@department</option>
+                    }
                 </select>
             </td>
             <td><input class="button" type="submit" value="Hämta lista" /></td>
-            <td><input name="caseNumber" placeholder="Ärendenummer" /></td>
+            <td><input name="caseNumber" /></td>
             <td><input class="button" type="submit" value="Sök" /></td>
         </tr>
     </table>
 </form>
 
-<!-- Dynamically list errands -->
+<!-- Här visas listan på ärenden -->
 <table>
     <tr>
         <th>Ärende anmält</th>
@@ -48,14 +58,14 @@
         <tr>
             <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
             <td>
-                <a asp-controller="Investigator" asp-action="Details" asp-route-id="@errand.ErrandId">
+                <a asp-controller="Coordinator" asp-action="StartCoordinator" asp-route-id="@errand.ErrandId">
                     @errand.ErrandId
                 </a>
             </td>
             <td>@errand.TypeOfCrime</td>
             <td>@errand.StatusId</td>
             <td>@errand.DepartmentId</td>
-            <td>@errand.EmployeeId ?? "Ingen utredare satt"</td>
+            <td>@errand.EmployeeId</td>
         </tr>
     }
 </table>

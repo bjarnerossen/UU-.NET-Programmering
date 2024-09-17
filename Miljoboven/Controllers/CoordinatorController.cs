@@ -19,6 +19,12 @@ namespace Miljoboven.Controllers
         public ViewResult StartCoordinator()
         {
             var errands = _repository.GetErrands();
+
+            // Populate the ViewBags with statuses and departments from the repository
+            ViewBag.Statuses = _repository.GetStatuses();
+            ViewBag.Departments = _repository.GetDepartments();
+
+            // Pass the errands model to the view
             return View(errands);
         }
 
