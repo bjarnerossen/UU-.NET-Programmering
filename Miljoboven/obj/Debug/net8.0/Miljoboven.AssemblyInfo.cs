@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Miljoboven")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+071b8ed9a2637bf55cb89ab47f60373038152c17")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94138cbb0437368dadfa4eaacf8ad27e3c3c7c15")]
 [assembly: System.Reflection.AssemblyProductAttribute("Miljoboven")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Miljoboven")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
