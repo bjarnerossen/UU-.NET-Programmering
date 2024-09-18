@@ -18,20 +18,20 @@
     <tr>
         <td>
             <select name="status">
-                <option selected="selected">Välj alla</option>
-                <option value="stat0">Inrapporterad</option>
-                <option value="stat1">Ingen åtgärd</option>
-                <option value="stat2">Påbörjad</option>
-                <option value="stat3">Klar</option>
+                <option selected="">Välj alla</option>
+                @foreach (var status in ViewBag.Statuses)
+                {
+                    <option value="@status">@status</option>
+                }
             </select>
         </td>
         <td>
             <select name="investigator">
-                <option selected="selected">Välj alla</option>
-                <option value="inv0">Martin Kvist</option>
-                <option value="inv1">Lena Larsson</option>
-                <option value="inv2">Oskar Ivarsson</option>
-                <option value="inv3">Susanne Fred</option>
+                <option selected="">Välj alla</option>
+                @foreach (var investigator in ViewBag.Investigators)
+                {
+                    <option value="@investigator">@investigator</option>
+                }
             </select>
         </td>
         <td><input class="button" type="submit" value="Hämta lista" /></td>
@@ -50,52 +50,20 @@
         <th>Avdelning</th>
         <th>Handläggare</th>
     </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a asp-controller="CrimeManager" asp-action="Details" asp-route-id="2023-45-0201">2023-45-0201</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a asp-controller="CrimeManager" asp-action="Details" asp-route-id="2023-45-0202">2023-45-0202</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Pågående</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ada Bengtsson</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a asp-controller="CrimeManager" asp-action="Details" asp-route-id="2023-45-0203">2023-45-0203</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a asp-controller="CrimeManager" asp-action="Details" asp-route-id="2023-45-0204">2023-45-0204</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a asp-controller="CrimeManager" asp-action="Details" asp-route-id="2023-45-0205">2023-45-0205</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Pågående</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Bengt Cederström</td>
-    </tr>
-    <tr>
-        <td>2023-05-01</td>
-        <td><a asp-controller="CrimeManager" asp-action="Details" asp-route-id="2023-45-0206">2023-45-0206</a></td>
-        <td>Oljeutsläpp</td>
-        <td>Ej startad</td>
-        <td>Tekniska avloppshanteringen</td>
-        <td>Ingen utredare satt</td>
-    </tr>
+
+    @foreach (var errand in Model)
+    {
+        <tr>
+            <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
+            <td>
+                <a asp-controller="Manager" asp-action="CrimeManager" asp-route-id="@errand.ErrandId">
+                    @errand.ErrandId
+                </a>
+            </td>
+            <td>@errand.TypeOfCrime</td>
+            <td>@errand.StatusId</td>
+            <td>@errand.DepartmentId</td>
+            <td>@errand.EmployeeId</td>
+        </tr>
+    }
 </table>

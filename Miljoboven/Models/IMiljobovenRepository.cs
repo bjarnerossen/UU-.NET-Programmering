@@ -7,6 +7,7 @@ namespace Miljoboven.Models
         List<Errand> GetErrands();
         List<string> GetStatuses();
         List<string> GetDepartments();
+        List<string> GetInvestigators();
     }
 
     public class MiljobovenRepository : IMiljobovenRepository
@@ -106,6 +107,12 @@ namespace Miljoboven.Models
         public List<string> GetDepartments()
         {
             return _errands.Select(e => e.DepartmentId).Distinct().ToList();
+        }
+
+        // Get unique Investigator from the list of errands
+        public List<string> GetInvestigators()
+        {
+            return _errands.Select(e => e.EmployeeId).Distinct().ToList();
         }
     }
 }

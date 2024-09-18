@@ -5,7 +5,7 @@
 }
 
 <h2>Ärenden</h2>
-<p class="info">Du är inloggad som handläggare</p>
+<p class="info">Du är inloggad som samordnare</p>
 
 <form method="get" action="StartCoordinator">
     <table id="managerForm">
@@ -58,7 +58,7 @@
         <tr>
             <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
             <td>
-                <a asp-controller="Coordinator" asp-action="StartCoordinator" asp-route-id="@errand.ErrandId">
+                <a asp-controller="Coordinator" asp-action="CrimeCoordinator" asp-route-id="@errand.ErrandId">
                     @errand.ErrandId
                 </a>
             </td>
