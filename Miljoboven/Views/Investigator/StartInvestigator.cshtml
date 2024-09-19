@@ -1,5 +1,3 @@
-@using Microsoft.AspNetCore.Mvc.TagHelpers
-
 @{
     Layout = "_LoginInvestigatorLayout";
 }
@@ -48,7 +46,7 @@
         <tr>
             <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
             <td>
-                <a asp-controller="Coordinator" asp-action="CrimeInvestigator" asp-route-id="@errand.ErrandId">
+                <a asp-controller="Investigator" asp-action="CrimeInvestigator" asp-route-id="@errand.ErrandId">
                     @errand.ErrandId
                 </a>
             </td>

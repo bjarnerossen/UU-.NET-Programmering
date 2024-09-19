@@ -28,9 +28,14 @@ namespace Miljoboven.Controllers
             return View(errands);
         }
 
-        public ViewResult CrimeCoordinator()
+        public ViewResult CrimeCoordinator(int errandId)
         {
-            return View();
+            // Populate the ViewBags with statuses and departments from the repository
+            ViewBag.Statuses = _repository.GetStatuses();
+            ViewBag.Departments = _repository.GetDepartments();
+
+            // Pass the errands model to the view
+            return View(errandId);
         }
 
         public ViewResult ReportCrime()
