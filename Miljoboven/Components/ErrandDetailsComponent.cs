@@ -14,12 +14,18 @@ public class ErrandDetailsComponent : ViewComponent
 
     // The Invoke method fetches the errand details by its ID from the
     // repository and returns a view component with the details.
-    public IViewComponentResult Invoke(int errandId)
+    public IViewComponentResult Invoke(string errandId)
     {
         // Fetch the specific errand using the ID
         var errand = _repository.GetErrandById(errandId);
 
-        // Pass the errand model to the view
+        if (errand == null)
+        {
+            // If the errand is not found, return a view component with a message
+            return View("NotFound", new { Message = "Errand not found" });
+        }
+
+        // Pass the errand to the view
         return View(errand);
     }
 }

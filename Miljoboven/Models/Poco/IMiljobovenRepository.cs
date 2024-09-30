@@ -8,11 +8,13 @@ namespace Miljoboven.Models
         List<string> GetStatuses();
         List<string> GetDepartments();
         List<string> GetInvestigators();
+
+        Errand GetErrandById(string errandId);
     }
 
     public class MiljobovenRepository : IMiljobovenRepository
     {
-        private List<Errand> _errands = new List<Errand>
+        private readonly List<Errand> _errands = new List<Errand>
         {
             new Errand
             {
@@ -113,6 +115,12 @@ namespace Miljoboven.Models
         public List<string> GetInvestigators()
         {
             return _errands.Select(e => e.EmployeeId).Distinct().ToList();
+        }
+
+        public Errand GetErrandById(string errandId)
+        {
+            // Return the errand if it exists in the collection
+            return _errands.FirstOrDefault(e => e.ErrandId == errandId);
         }
     }
 }
