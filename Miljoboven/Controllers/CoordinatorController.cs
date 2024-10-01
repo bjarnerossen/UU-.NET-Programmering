@@ -30,18 +30,20 @@ namespace Miljoboven.Controllers
 
         public ViewResult CrimeCoordinator(string errandId)
         {
+            // Print errandId to console for debugging
+            Console.WriteLine("Errand ID passed to CrimeCoordinator: " + errandId);
+
             // Fetch the specific errand by its string ID
             var errand = _repository.GetErrandById(errandId);
+
+            if (errand ==  null)
+            {
+                return View("ErrandNotFound");
+            }
 
             // Populate the ViewBags with statuses and departments from the repository
             ViewBag.Statuses = _repository.GetStatuses();
             ViewBag.Departments = _repository.GetDepartments();
-
-            // If no errand is found, show a "not found" page or handle accordingly
-            if (errand == null)
-            {
-                return View("ErrandNotFound");
-            }
 
             // Pass the errand model to the view
             return View(errand);

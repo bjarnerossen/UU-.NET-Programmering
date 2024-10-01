@@ -82,8 +82,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFuYWdlci9TdGFydE1hbmFnZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bjarne/Documents/Miljoboven/Views/Shared/Components/ErrandDetails/Default.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvRXJyYW5kRGV0YWlscy9EZWZhdWx0LmNzaHRtbA==
+[/Users/bjarne/Documents/Miljoboven/Views/Shared/Components/ErrandDetailsComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvRXJyYW5kRGV0YWlsc0NvbXBvbmVudC9EZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/bjarne/Documents/Miljoboven/Views/Shared/ErrandNotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0VycmFuZE5vdEZvdW5kLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/bjarne/Documents/Miljoboven/Views/Shared/_BoilerPlateLayout.cshtml]
