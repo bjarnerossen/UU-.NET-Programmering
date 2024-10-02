@@ -30,8 +30,8 @@ namespace Miljoboven.Controllers
 
         public ViewResult CrimeCoordinator(string errandId)
         {
-            // Print errandId to console for debugging
-            Console.WriteLine("Errand ID passed to CrimeCoordinator: " + errandId);
+            // Print errandId and type to console for debugging
+            Console.WriteLine("CrimeCoordinator: Errand ID passed to CrimeCoordinator: " + errandId + " (Type: " + errandId.GetType().Name + ")"); // REMOVE LATER
 
             // Fetch the specific errand by its string ID
             var errand = _repository.GetErrandById(errandId);

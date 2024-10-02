@@ -43,17 +43,6 @@
         <span class="label">Handläggare: </span><br />
         @Model.EmployeeId
     </p>
-    @* <p>
-    <span class="label">Provtagning: </span><br />
-    @if (Model.Samples != null)
-    {
-    foreach (var sample in Model.Samples)
-    {
-    <a href="~/uploaded-files/uploaded-samples/@sample.SampleName" target="_blank">@sample.SampleName</a>
-    <br />
-    }
-    }
-    </p> *@
     <p>
         <span class="label">Ytterligare information: </span><br />
         @Model.InvestigatorInfo
@@ -62,15 +51,13 @@
         <span class="label">Händelser: </span><br />
         @Model.InvestigatorAction
     </p>
-    @* <p>
-    <span class="label">Bilder: </span><br />
-    @if (Model.Pictures != null)
-    {
-    foreach (var picture in Model.Pictures)
-    {
-    <a href="~/uploaded-files/uploaded-pictures/@picture.PictureName" target="_blank">@picture.PictureName</a>
-    <br />
-    }
-    }
-    </p> *@
+    @* TO DO: GET THIS DATA DYNAMICALLY *@
+    <p>
+        <span class="label">Provtagning: </span><br />
+        Provtagning.pdf
+    </p>
+    <p>
+        <span class="label">Bilder: </span><br />
+        <img src="~/images/imagetest.jpg" alt="klicka på bilden" />
+    </p>
 </section>
