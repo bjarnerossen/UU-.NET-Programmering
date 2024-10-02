@@ -8,7 +8,7 @@ namespace Miljoboven.Models
         List<string> GetStatuses();
         List<string> GetDepartments();
         List<string> GetInvestigators();
-
+        
         Errand GetErrandById(string errandId);
     }
 

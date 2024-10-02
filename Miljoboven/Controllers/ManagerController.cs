@@ -27,9 +27,21 @@ namespace Miljoboven.Controllers
         }
 
 
-        public ActionResult CrimeManager()
+        public ActionResult CrimeManager(string errandId)
         {
-            return View();
+            // Fetch the specific errand by its string ID
+            var errand = _repository.GetErrandById(errandId);
+
+            if (errand ==  null)
+            {
+                return View("ErrandNotFound");
+            }
+
+            // Populate the ViewBags with statuses and departments from the repository
+            ViewBag.Investigators = _repository.GetInvestigators();
+
+            // Pass the errands model to the view
+            return View(errand);
         }
     }
 }
