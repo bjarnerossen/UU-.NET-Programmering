@@ -18,7 +18,8 @@
             <!-- Loopar över handläggare från repository och visar dem i dropdown -->
             @foreach (var investigator in ViewBag.Investigators)
             {
-                <option value="@investigator">@investigator</option>
+                <option value="@investigator" selected="@(investigator == Model.EmployeeId ? "selected" : null)">
+                    @investigator</option>
             }
         </select>
     </p>
