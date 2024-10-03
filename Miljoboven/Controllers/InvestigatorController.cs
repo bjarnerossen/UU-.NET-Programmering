@@ -6,8 +6,6 @@ namespace Miljoboven.Controllers
 {
     public class InvestigatorController : Controller
     {
-
-        // Inject the repository
         private readonly IMiljobovenRepository _repository;
 
         public InvestigatorController(IMiljobovenRepository repository)

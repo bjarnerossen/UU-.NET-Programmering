@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Miljoboven.Models;
+using Miljoboven.Extensions;
 using System.Collections.Generic;
 
 namespace Miljoboven.Controllers
 {
     public class CoordinatorController : Controller
     {
-
-        // Inject the repository
         private readonly IMiljobovenRepository _repository;
 
         public CoordinatorController(IMiljobovenRepository repository)
@@ -49,17 +48,35 @@ namespace Miljoboven.Controllers
             return View(errand);
         }
 
-        public ViewResult ReportCrime()
+        [HttpPost]
+        public ViewResult Validate(Errand errand)
         {
-            return View();
+            ViewBag.Title = "Bekräfta - Samordnare";
+
+            if (ModelState.IsValid) // Kontrollera att modellen är giltig
+            {
+                HttpContext.Session.SetJson("NewErrand", errand); 
+                return View("Validate", errand); // Returnera Validate-vyn
+            }
+
+            return View("../Coordinator/ReportCrime", errand); 
+        }
+
+        public ViewResult ReportCrime() // Form
+        {
+            ViewBag.Title = "Coordinator";
+            var newErrand = HttpContext.Session.GetJson<Errand>("NewErrand");
+            if (newErrand == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View("../Coordinator/Validate", newErrand);
+            }
         }
 
         public ViewResult Thanks()
-        {
-            return View();
-        }
-
-        public ViewResult Validate()
         {
             return View();
         }

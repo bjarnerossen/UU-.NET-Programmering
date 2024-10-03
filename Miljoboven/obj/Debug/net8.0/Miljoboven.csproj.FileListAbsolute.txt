@@ -6,6 +6,9 @@
 /Users/bjarne/Documents/Miljoboven/bin/Debug/net8.0/Miljoboven.runtimeconfig.json
 /Users/bjarne/Documents/Miljoboven/bin/Debug/net8.0/Miljoboven.dll
 /Users/bjarne/Documents/Miljoboven/bin/Debug/net8.0/Miljoboven.pdb
+/Users/bjarne/Documents/Miljoboven/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/bjarne/Documents/Miljoboven/bin/Debug/net8.0/System.Security.Permissions.dll
+/Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/Miljoboven.csproj.AssemblyReference.cache
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/Miljoboven.GeneratedMSBuildEditorConfig.editorconfig
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/Miljoboven.AssemblyInfoInputs.cache
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/Miljoboven.AssemblyInfo.cs
@@ -22,6 +25,7 @@
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Miljoboven.props
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/staticwebassets.pack.json
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/scopedcss/bundle/Miljoboven.styles.css
+/Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/Miljoboven.csproj.Up2Date
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/Miljoboven.dll
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/refint/Miljoboven.dll
 /Users/bjarne/Documents/Miljoboven/obj/Debug/net8.0/Miljoboven.pdb
