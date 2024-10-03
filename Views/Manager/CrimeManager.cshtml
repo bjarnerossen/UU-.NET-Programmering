@@ -1,0 +1,31 @@
+@{
+    Layout = "_LoginManagerLayout";
+}
+
+@model Miljoboven.Models.Errand
+
+<h2>Detaljer för ärendet</h2>
+<p class="info">Du är inloggad som avdelningschef</p>
+
+@* Invoke the ErrandDetailsComponent, passing the errand ID as a string *@
+@await Component.InvokeAsync("ErrandDetailsComponent", new { errandId = Model.ErrandId })
+
+<section id="bottomColumn">
+    <h3>Redigera ärende</h3>
+    <p>
+        Ange handläggare:
+        <select name="investigator">
+            <!-- Loopar över handläggare från repository och visar dem i dropdown -->
+            @foreach (var investigator in ViewBag.Investigators)
+            {
+                <option value="@investigator" selected="@(investigator == Model.EmployeeId ? "selected" : null)">
+                    @investigator</option>
+            }
+        </select>
+    </p>
+    <p>
+        <input type="checkbox" name="noAction" value="true" /> Ingen åtgärd:
+        <input type="text" name="reason" value="Ange motivering" />
+    </p>
+    <p><input class="button" type="submit" value="Spara" /></p>
+</section>

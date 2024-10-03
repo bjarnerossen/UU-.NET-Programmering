@@ -1,0 +1,67 @@
+@{
+    Layout = "_LoginManagerLayout";
+}
+
+<h2>Ärenden</h2>
+<p class="info">Du är inloggad som avdelningschef</p>
+
+<table id="managerForm">
+    <tr>
+        <td class="label">Välj status:</td>
+        <td class="label">Välj handläggare:</td>
+        <td>&nbsp;</td>
+        <td class="label">Ärendenummer:</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <select name="status">
+                <option selected="">Välj alla</option>
+                @foreach (var status in ViewBag.Statuses)
+                {
+                    <option value="@status">@status</option>
+                }
+            </select>
+        </td>
+        <td>
+            <select name="investigator">
+                <option selected="">Välj alla</option>
+                @foreach (var investigator in ViewBag.Investigators)
+                {
+                    <option value="@investigator">@investigator</option>
+                }
+            </select>
+        </td>
+        <td><input class="button" type="submit" value="Hämta lista" /></td>
+        <td><input name="casenumber" /></td>
+        <td><input class="button" type="submit" value="Sök" /></td>
+    </tr>
+</table>
+
+<!--Nedan ser man en lista på ärenden-->
+<table>
+    <tr>
+        <th>Ärende anmält</th>
+        <th>Ärendenummer</th>
+        <th>Miljöbrott</th>
+        <th>Status</th>
+        <th>Avdelning</th>
+        <th>Handläggare</th>
+    </tr>
+
+    @foreach (var errand in Model)
+    {
+        <tr>
+            <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
+            <td>
+                <a asp-controller="Manager" asp-action="CrimeManager" asp-route-errandId="@errand.ErrandId">
+                    @errand.ErrandId
+                </a>
+            </td>
+            <td>@errand.TypeOfCrime</td>
+            <td>@errand.StatusId</td>
+            <td>@errand.DepartmentId</td>
+            <td>@errand.EmployeeId</td>
+        </tr>
+    }
+</table>
