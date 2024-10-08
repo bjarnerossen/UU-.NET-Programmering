@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Miljoboven.Models;
 using Miljoboven.Extensions;
-using System.Collections.Generic;
 
 namespace Miljoboven.Controllers
 {
@@ -29,13 +28,10 @@ namespace Miljoboven.Controllers
 
         public ViewResult CrimeCoordinator(string errandId)
         {
-            // Print errandId and type to console for debugging
-            Console.WriteLine("CrimeCoordinator: Errand ID passed to CrimeCoordinator: " + errandId + " (Type: " + errandId.GetType().Name + ")"); // REMOVE LATER
-
             // Fetch the specific errand by its string ID
             var errand = _repository.GetErrandById(errandId);
 
-            if (errand ==  null)
+            if (errand == null)
             {
                 return View("ErrandNotFound");
             }
@@ -55,11 +51,11 @@ namespace Miljoboven.Controllers
 
             if (ModelState.IsValid) // Kontrollera att modellen är giltig
             {
-                HttpContext.Session.SetJson("NewErrand", errand); 
+                HttpContext.Session.SetJson("NewErrand", errand);
                 return View("Validate", errand); // Returnera Validate-vyn
             }
 
-            return View("../Coordinator/ReportCrime", errand); 
+            return View("../Coordinator/ReportCrime", errand);
         }
 
         public ViewResult ReportCrime() // Form

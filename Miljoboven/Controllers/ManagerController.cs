@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Miljoboven.Models;
-using System.Collections.Generic;
 
 namespace Miljoboven.Controllers
 {
@@ -32,7 +31,7 @@ namespace Miljoboven.Controllers
             // Fetch the specific errand by its string ID
             var errand = _repository.GetErrandById(errandId);
 
-            if (errand ==  null)
+            if (errand == null)
             {
                 return View("ErrandNotFound");
             }

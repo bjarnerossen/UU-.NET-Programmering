@@ -16,9 +16,6 @@ public class ErrandDetailsComponent : ViewComponent
     // repository and returns a view component with the details.
     public IViewComponentResult Invoke(string errandId)
     {
-        // Print errandId and type to console for debugging
-        Console.WriteLine("ErrandDetailsComponent: Errand ID passed to CrimeCoordinator: " + errandId + " (Type: " + errandId.GetType().Name + ")"); // REMOVE LATER
-
         // Fetch the specific errand using the ID
         var errand = _repository.GetErrandById(errandId);
         if (errand == null)
