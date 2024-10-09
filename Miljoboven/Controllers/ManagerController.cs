@@ -13,15 +13,16 @@ namespace Miljoboven.Controllers
             _repository = repository;
         }
 
-        public ActionResult StartManager()
+        public ViewResult StartManager()
         {
             return View(_repository);
         }
 
 
-        public ActionResult CrimeManager()
+        public ViewResult CrimeManager(string id)
         {
-            return View();
+            ViewBag.ID = id;
+            return View(_repository);
         }
     }
 }

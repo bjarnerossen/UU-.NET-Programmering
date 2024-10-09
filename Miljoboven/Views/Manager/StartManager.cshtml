@@ -23,7 +23,7 @@
                 <option selected="">Välj alla</option>
                 @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
                 {
-                    <option value="@errandStatus.StatusId">@errandStatus.StatusName</option>
+                            <option value="@errandStatus.StatusId">@errandStatus.StatusName</option>
                 }
             </select>
         </td>
@@ -32,7 +32,7 @@
                 <option selected="">Välj alla</option>
                 @foreach (Employee employee in Model.Employees)
                 {
-                    <option value="@employee.EmployeeId">@employee.EmployeeName</option>
+                            <option value="@employee.EmployeeId">@employee.EmployeeName</option>
                 }
             </select>
         </td>
@@ -55,17 +55,17 @@
 
     @foreach (Errand errand in Model.Errands)
     {
-        <tr>
-            <td>@errand.DateOfObservation.ToShortDateString()</td>
-            <td>
-                <a asp-controller="Manager" asp-action="CrimeManager" asp-route-errandId="@errand.ErrandId">
+                <tr>
+                    <td>@errand.DateOfObservation.ToShortDateString()</td>
+                    <td>
+                        <a asp-controller="Manager" asp-action="CrimeManager" asp-route-id="@errand.ErrandId">
                     @errand.ErrandId
-                </a>
-            </td>
-            <td>@errand.TypeOfCrime</td>
-            <td>@errand.StatusId</td>
-            <td>@errand.DepartmentId</td>
-            <td>@errand.EmployeeId</td>
-        </tr>
+                        </a>
+                    </td>
+                    <td>@errand.TypeOfCrime</td>
+                    <td>@errand.StatusId</td>
+                    <td>@errand.DepartmentId</td>
+                    <td>@errand.EmployeeId</td>
+                </tr>
     }
 </table>

@@ -17,9 +17,10 @@ namespace Miljoboven.Controllers
             return View(_repository);
         }
 
-        public ViewResult CrimeInvestigator()
+        public ViewResult CrimeInvestigator(string id)
         {
-            return View();
+            ViewBag.ID = id;
+            return View(_repository);
         }
     }
 }

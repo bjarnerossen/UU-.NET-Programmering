@@ -1,14 +1,14 @@
+@model IMiljobovenRepository
+
 @{
     Layout = "_LoginInvestigatorLayout";
 }
 
-@model Miljoboven.Models.Errand
 
 <h2>Detaljer för ärendet</h2>
 <p class="info">Du är inloggad som handläggare</p>
 
-@* Invoke the ErrandDetailsComponent, passing the errand ID as a string *@
-@await Component.InvokeAsync("ErrandDetailsComponent", new { errandId = Model.ErrandId })
+@await Component.InvokeAsync("ErrandDetails", ViewBag.ID)
 
 <section id="bottomColumn">
     <h3>Redigera ärende</h3>
@@ -27,9 +27,9 @@
 
     <p class="label">Ändring av status:</p>
     <select name="status">
-        @foreach (var status in ViewBag.Statuses)
+        @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
         {
-            <option value="@status" selected="@(status == Model.StatusId ? "selected" : null)">@status</option>
+            <option>@errandStatus.StatusName</option>
         }
     </select>
 
