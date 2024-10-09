@@ -1,12 +1,12 @@
 namespace Miljoboven.Models
 {
     public interface IMiljobovenRepository
-    {
-        IQueryable<Errand> GetErrands();
-        IQueryable<string> GetStatuses();
-        IQueryable<string> GetDepartments();
-        IQueryable<string> GetInvestigators();
 
-        Errand GetErrandById(string errandId);
+    {
+        IQueryable<Errand> Errands { get; }
+        IQueryable<ErrandStatus> ErrandStatuses { get; }
+        IQueryable<Employee> Employees { get; }
+        IQueryable<Department> Departments { get; }
+        Task<Errand> GetErrandDetails(string id);
     }
-}
+};

@@ -14,31 +14,12 @@ namespace Miljoboven.Controllers
 
         public ViewResult StartInvestigator()
         {
-            var errands = _repository.GetErrands();
-
-            // Populate the ViewBags with statuses and departments from the repository
-            ViewBag.Statuses = _repository.GetStatuses();
-            ViewBag.Departments = _repository.GetDepartments();
-
-            // Pass the errands model to the view
-            return View(errands);
+            return View(_repository);
         }
 
-        public ViewResult CrimeInvestigator(string errandId)
+        public ViewResult CrimeInvestigator()
         {
-            // Fetch the specific errand by its string ID
-            var errand = _repository.GetErrandById(errandId);
-
-            if (errand == null)
-            {
-                return View("ErrandNotFound");
-            }
-
-            // Populate the ViewBags with statuses and departments from the repository
-            ViewBag.Statuses = _repository.GetStatuses();
-
-            // Pass the errand model to the view
-            return View(errand);
+            return View();
         }
     }
 }

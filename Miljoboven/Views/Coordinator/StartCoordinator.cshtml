@@ -1,8 +1,9 @@
-@model List<Miljoboven.Models.Errand>
+@model IMiljobovenRepository
 
 @{
     Layout = "_LoginCoordinatorLayout";
 }
+
 
 <h2>Ärenden</h2>
 <p class="info">Du är inloggad som samordnare</p>
@@ -20,18 +21,18 @@
             <td>
                 <select name="status">
                     <option selected="">Välj alla</option>
-                    @foreach (var status in ViewBag.Statuses)
+                    @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
                     {
-                        <option value="@status">@status</option>
+                        <option value="@errandStatus.StatusId">@errandStatus.StatusName</option>
                     }
                 </select>
             </td>
             <td>
                 <select name="department">
                     <option selected="">Välj alla</option>
-                    @foreach (var department in ViewBag.Departments)
+                    @foreach (Department department in Model.Departments)
                     {
-                        <option value="@department">@department</option>
+                        <option value="@department.DepartmentId">@department.DepartmentName</option>
                     }
                 </select>
             </td>
@@ -53,14 +54,13 @@
         <th>Handläggare</th>
     </tr>
 
-    @foreach (var errand in Model)
+    @foreach (Errand errand in Model.Errands)
     {
         <tr>
-            <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
+            <td>@errand.DateOfObservation.ToShortDateString()</td>
             <td>
-                <a asp-controller="Coordinator" asp-action="CrimeCoordinator" asp-route-errandId="@errand.ErrandId">
-                    @errand.ErrandId
-                </a>
+                <a asp-controller="Coordinator" asp-action="CrimeCoordinator"
+                    asp-route-id="@errand.ErrandId">@errand.ErrandId</a>
             </td>
             <td>@errand.TypeOfCrime</td>
             <td>@errand.StatusId</td>

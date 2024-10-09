@@ -1,6 +1,10 @@
+@model IMiljobovenRepository
+
 @{
     Layout = "_LoginManagerLayout";
 }
+
+
 
 <h2>Ärenden</h2>
 <p class="info">Du är inloggad som avdelningschef</p>
@@ -17,18 +21,18 @@
         <td>
             <select name="status">
                 <option selected="">Välj alla</option>
-                @foreach (var status in ViewBag.Statuses)
+                @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
                 {
-                    <option value="@status">@status</option>
+                    <option value="@errandStatus.StatusId">@errandStatus.StatusName</option>
                 }
             </select>
         </td>
         <td>
             <select name="investigator">
                 <option selected="">Välj alla</option>
-                @foreach (var investigator in ViewBag.Investigators)
+                @foreach (Employee employee in Model.Employees)
                 {
-                    <option value="@investigator">@investigator</option>
+                    <option value="@employee.EmployeeId">@employee.EmployeeName</option>
                 }
             </select>
         </td>
@@ -49,10 +53,10 @@
         <th>Handläggare</th>
     </tr>
 
-    @foreach (var errand in Model)
+    @foreach (Errand errand in Model.Errands)
     {
         <tr>
-            <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
+            <td>@errand.DateOfObservation.ToShortDateString()</td>
             <td>
                 <a asp-controller="Manager" asp-action="CrimeManager" asp-route-errandId="@errand.ErrandId">
                     @errand.ErrandId

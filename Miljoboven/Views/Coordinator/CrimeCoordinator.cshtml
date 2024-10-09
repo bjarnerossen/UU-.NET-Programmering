@@ -1,24 +1,22 @@
+@model IMiljobovenRepository
+
 @{
     Layout = "_LoginCoordinatorLayout";
 }
 
-@model Miljoboven.Models.Errand
-
 <h2>Detaljer för ärendet</h2>
 <p class="info">Du är inloggad som samordnare</p>
 
-@* Invoke the ErrandDetailsComponent, passing the errand ID as a string *@
-@await Component.InvokeAsync("ErrandDetailsComponent", new { errandId = Model.ErrandId })
+@await Component.InvokeAsync("ErrandDetails", ViewBag.ID)
 
 <section id="bottomColumn">
     <h3>Redigera ärende</h3>
     <p>Ange enhet:
         <select name="department">
             <option selected="selected">Välj</option>
-            <!-- Loopar över avdelningar från repository och visar dem i dropdown -->
-            @foreach (var department in ViewBag.Departments)
+            @foreach (var department in Model.Departments)
             {
-                <option value="@department">@department</option>
+                <option value="@department.DepartmentId">@department.DepartmentName</option>
             }
         </select>
     </p>

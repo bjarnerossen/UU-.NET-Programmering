@@ -1,3 +1,5 @@
+@model IMiljobovenRepository;
+
 @{
     Layout = "_LoginInvestigatorLayout";
 }
@@ -17,9 +19,9 @@
             <td>
                 <select name="status">
                     <option selected="">Välj alla</option>
-                    @foreach (var status in ViewBag.Statuses)
+                    @foreach (var errandStatus in Model.ErrandStatuses)
                     {
-                        <option value="@status">@status</option>
+                        <option value="@errandStatus.StatusId">@errandStatus.StatusName</option>
                     }
                 </select>
             </td>
@@ -41,10 +43,10 @@
         <th>Handläggare</th>
     </tr>
 
-    @foreach (var errand in Model)
+    @foreach (var errand in Model.Errands)
     {
         <tr>
-            <td>@errand.DateOfObservation.ToString("yyyy-MM-dd")</td>
+            <td>@errand.DateOfObservation.ToShortDateString()</td>
             <td>
                 <a asp-controller="Investigator" asp-action="CrimeInvestigator" asp-route-errandId="@errand.ErrandId">
                     @errand.ErrandId

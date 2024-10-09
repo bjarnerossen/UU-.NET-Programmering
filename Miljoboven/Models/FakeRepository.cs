@@ -1,8 +1,9 @@
 namespace Miljoboven.Models
+
 {
-    public class MiljobovenRepository : IMiljobovenRepository
+    public class FakeRepository : IMiljobovenRepository
     {
-        private readonly List<Errand> _errands = new List<Errand>
+        public IQueryable<Errand> Errands => new List<Errand>
         {
             new Errand
             {
@@ -79,55 +80,39 @@ namespace Miljoboven.Models
                 DepartmentId = "Ej tillsatt",
                 EmployeeId = "Ej tillsatt"
             }
-        };
+        }.AsQueryable<Errand>();
 
-        private readonly List<Department> _departments = new List<Department>
+        public IQueryable<Department> Departments => new List<Department>
         {
             new Department { DepartmentId = "D00", DepartmentName = "Småstads kommun" },
             new Department { DepartmentId = "D01", DepartmentName = "IT-avdelningen" },
             new Department { DepartmentId = "D02", DepartmentName = "Lek och Skoj" },
             new Department { DepartmentId = "D03", DepartmentName = "Miljöskydd" }
-        };
+        }.AsQueryable<Department>();
 
-        private readonly List<ErrandStatus> _statuses = new List<ErrandStatus>
+        public IQueryable<ErrandStatus> ErrandStatuses => new List<ErrandStatus>
         {
             new ErrandStatus { StatusId = "S_A", StatusName = "Rapporterad" },
             new ErrandStatus { StatusId = "S_B", StatusName = "Ingen åtgärd" },
             new ErrandStatus { StatusId = "S_C", StatusName = "Startad" },
             new ErrandStatus { StatusId = "S_D", StatusName = "Färdig" }
-        };
+        }.AsQueryable<ErrandStatus>();
 
-        private readonly List<Employee> _employees = new List<Employee>
+        public IQueryable<Employee> Employees => new List<Employee>
         {
             new Employee { EmployeeId = "E302", EmployeeName = "Martin Bäck", RoleTitle = "investigator", DepartmentId = "D01" },
             new Employee { EmployeeId = "E301", EmployeeName = "Lena Kristersson", RoleTitle = "investigator", DepartmentId = "D01" },
             new Employee { EmployeeId = "E401", EmployeeName = "Oskar Jansson", RoleTitle = "investigator", DepartmentId = "D02" },
             new Employee { EmployeeId = "E501", EmployeeName = "Susanne Strid", RoleTitle = "investigator", DepartmentId = "D03" }
-        };
+        }.AsQueryable<Employee>();
 
-        public IQueryable<Errand> GetErrands()
+        public Task<Errand> GetErrandDetails(string id)
         {
-            return _errands.AsQueryable();
-        }
-
-        public IQueryable<string> GetStatuses()
-        {
-            return _statuses.Select(s => s.StatusName).AsQueryable();
-        }
-
-        public IQueryable<string> GetDepartments()
-        {
-            return _departments.Select(d => d.DepartmentName).AsQueryable();
-        }
-
-        public IQueryable<string> GetInvestigators()
-        {
-            return _employees.Select(e => e.EmployeeName).AsQueryable();
-        }
-
-        public Errand GetErrandById(string errandId)
-        {
-            return _errands.FirstOrDefault(e => e.ErrandId == errandId);
+            return Task.Run(() =>
+            {
+                var errandDetails = Errands.Where(er => er.ErrandId == id).First();
+                return errandDetails;
+            });
         }
     }
 }
