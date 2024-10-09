@@ -23,21 +23,21 @@ namespace Miljoboven.Controllers
             return View(_repository);
         }
 
+        [HttpPost]
+        public ViewResult Validate(Errand errand)
+        {
+            return View(errand);
 
-        // public ViewResult Validate()
-        // {
-        //     return View();
+        }
 
-        // }
+        public ViewResult ReportCrime() // Form
+        {
+            return View();
+        }
 
-        // public ViewResult ReportCrime() // Form
-        // {
-        //     return View();
-        // }
-
-        // public ViewResult Thanks()
-        // {
-        //     return View();
-        // }
+        public ViewResult Thanks()
+        {
+            return View();
+        }
     }
 }
