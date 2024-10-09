@@ -12,15 +12,14 @@ namespace Miljoboven.Controllers
             _repository = repository;
         }
 
-        // Fetching errands for Investigator view
         public ViewResult StartCoordinator()
         {
             return View(_repository);
         }
 
-        public ViewResult CrimeCoordinator(string errandId)
+        public ViewResult CrimeCoordinator(string id)
         {
-            ViewBag.ID = errandId;
+            ViewBag.ID = id;
             return View(_repository);
         }
 

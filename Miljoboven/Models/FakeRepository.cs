@@ -108,11 +108,7 @@ namespace Miljoboven.Models
 
         public Task<Errand> GetErrandDetails(string id)
         {
-            return Task.Run(() =>
-            {
-                var errandDetails = Errands.Where(er => er.ErrandId == id).First();
-                return errandDetails;
-            });
+            return Task.FromResult(Errands.FirstOrDefault(e => e.ErrandId == id));
         }
     }
 }
