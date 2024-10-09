@@ -5,16 +5,13 @@ namespace Miljoboven.Models
     public class Errand
     {
         public string ErrandId { get; set; }
-        
-        [Display(Name = "Var har brottet skett någonstans?")]
+
         [Required(ErrorMessage = "Du måste fylla i en Plats.")]
         public string Place { get; set; }
 
-        [Display(Name = "Vilken typ av brott?")]
         [Required(ErrorMessage = "Du måste fylla i ett Brott.")]
         public string TypeOfCrime { get; set; }
-        
-        [Display(Name = "När skedde brottet?")]
+
         [Required(ErrorMessage = "Du måste fylla i ett Datum och Tid.")]
         [DisplayFormat(DataFormatString = @"{0:yyyy-MM-dd}")]
         [DataType(DataType.Date)]
@@ -27,7 +24,6 @@ namespace Miljoboven.Models
         // Regex for swedish telefone number
         [RegularExpression(@"^[0]{1}[0-9]{1,3}-[0-9]{5,9}$",
             ErrorMessage = "Formatet är riktnummer-telefonnummer: 070-1234567")]
-        [Display(Name = "Ditt telefonnummer:")]
         [Required(ErrorMessage = "Du måste fylla i ett Telefonnummer.")]
         public string InformerPhone { get; set; }
 

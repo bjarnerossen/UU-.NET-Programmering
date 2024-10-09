@@ -12,6 +12,12 @@ namespace Miljoboven.Controllers
             _repository = repository;
         }
 
+        [HttpPost]
+        public IActionResult Validate(Errand errand)
+        {
+            return View(errand);
+        }
+
         public ViewResult Services()
         {
             return View();
