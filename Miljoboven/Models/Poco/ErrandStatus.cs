@@ -1,7 +1,12 @@
-namespace Miljoboven.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 
-public class ErrandStatus
+namespace Miljoboven.Models
 {
-    public string StatusId { get; set; }
-    public string StatusName { get; set; }
+    public class ErrandStatus
+    {
+        [Key]
+        public string StatusId { get; set; }
+        public string StatusName { get; set; }
+    }
 }

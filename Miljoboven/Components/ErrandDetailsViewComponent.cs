@@ -12,7 +12,7 @@ public class ErrandDetailsViewComponent : ViewComponent
         _repository = repository;
     }
 
-    public async Task<IViewComponentResult> InvokeAsync(string id)
+    public async Task<IViewComponentResult> InvokeAsync(int id)
     {
         var errandDetails = await _repository.GetErrandDetails(id);
         return View(errandDetails);

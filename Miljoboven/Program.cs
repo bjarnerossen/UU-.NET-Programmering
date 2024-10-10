@@ -1,14 +1,21 @@
 using Miljoboven.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-// Register the IMiljobovenRepository with its FakeRepository implementation
-builder.Services.AddSingleton<IMiljobovenRepository, FakeRepository>();
+builder.Services.AddTransient<IMiljobovenRepository, EFMiljobovenRepository>();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    DBInitializer.EnsurePopulated(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -17,10 +24,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(

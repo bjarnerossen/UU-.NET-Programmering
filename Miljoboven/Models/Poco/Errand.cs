@@ -4,7 +4,9 @@ namespace Miljoboven.Models
 {
     public class Errand
     {
-        public string ErrandId { get; set; }
+        public int ErrandId { get; set; }
+
+        public String RefNumber { get; set; }
 
         [Required(ErrorMessage = "Du måste fylla i en Plats.")]
         public string Place { get; set; }
@@ -36,5 +38,8 @@ namespace Miljoboven.Models
 
         public string DepartmentId { get; set; }
         public string EmployeeId { get; set; }
+
+        public ICollection<Sample> Samples { get; set; }
+        public ICollection<Picture> Pictures { get; set; }
     }
 }
