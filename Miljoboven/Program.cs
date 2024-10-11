@@ -7,17 +7,26 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IMiljobovenRepository, EFMiljobovenRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Home/Login";
+    options.AccessDeniedPath = "/Home/NoAccess";
+});
+
+
+builder.Services.AddSession();
 var app = builder.Build();
 
+// Ensure the database is populated with initial data
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     DBInitializer.EnsurePopulated(services);
 }
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline / middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -27,6 +36,7 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

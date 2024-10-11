@@ -8,5 +8,6 @@ namespace Miljoboven.Models
         IQueryable<Employee> Employees { get; }
         IQueryable<Department> Departments { get; }
         Task<Errand> GetErrandDetails(int id);
+        string SaveErrand(Errand errand);
     }
 };

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Miljoboven.Models;
+using Miljoboven.Infrastructure;
 
 namespace Miljoboven.Controllers
 {
@@ -14,7 +15,15 @@ namespace Miljoboven.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            var newErrand = HttpContext.Session.GetJson<Errand>("NewErrand");
+            if (newErrand == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View(newErrand);
+            }
         }
 
         public ViewResult Login()

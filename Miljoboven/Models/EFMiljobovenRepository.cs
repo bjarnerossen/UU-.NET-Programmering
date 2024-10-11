@@ -25,5 +25,23 @@ namespace Miljoboven.Models
         {
             return Task.FromResult(Errands.FirstOrDefault(e => e.ErrandId == id));
         }
+
+        public string SaveErrand(Errand errand)
+        {
+            // Check if the errand object is null and throw an exception if it is.
+            if (errand == null) throw new ArgumentNullException(nameof(errand));
+            // If the errand already has an ID (meaning it's already saved), return its reference number.
+            if (errand.ErrandId != 0) return errand.RefNumber;
+
+            // Find the sequence with the ID of 1. If not found, throw an InvalidOperationException.
+            var sequence = Sequences.FirstOrDefault(s => s.Id == 1) ?? throw new InvalidOperationException("Sequence not found");
+            errand.RefNumber = $"{DateTime.Now.Year}-45-{sequence.CurrentValue++}";
+            errand.StatusId = "S_A";
+
+            _context.Errands.Add(errand);
+            _context.SaveChanges();
+
+            return errand.RefNumber;
+        }
     }
 }
