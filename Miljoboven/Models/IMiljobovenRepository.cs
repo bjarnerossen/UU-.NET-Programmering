@@ -10,5 +10,6 @@ namespace Miljoboven.Models
         Task<Errand> GetErrandDetails(int id);
         string SaveErrand(Errand errand);
         void UpdateDepartment(int id, string department);
+        void ManagerEdit(int id, string reason, bool noAction, string investigator);
     }
 };

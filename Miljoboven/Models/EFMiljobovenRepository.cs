@@ -50,5 +50,24 @@ namespace Miljoboven.Models
             errand.DepartmentId = department;
             _context.SaveChanges();
         }
+
+        public void ManagerEdit(int id, string reason, bool noAction, string investigator)
+        {
+            var errand = Errands.FirstOrDefault(e => e.ErrandId == id);
+            if (errand == null) throw new InvalidOperationException("Errand not found");
+
+            if (noAction) // If no action is required (true)
+            {
+                errand.StatusId = "S_B";
+                errand.InvestigatorInfo = reason;
+            }
+            else // Choose investigator
+            {
+                errand.StatusId = "S_A";
+                errand.EmployeeId = investigator;
+            }
+
+            _context.SaveChanges();
+        }
     }
 }
