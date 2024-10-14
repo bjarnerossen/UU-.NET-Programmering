@@ -52,5 +52,16 @@ namespace Miljoboven.Controllers
                 return View(newErrand);
             }
         }
+
+        [HttpPost]
+        public IActionResult SaveDepartment(int id, string department)
+        {
+            if (department != null && department != "Välj" && department != "D00")
+            {
+                _repository.UpdateDepartment(id, department);
+                return RedirectToAction("StartCoordinator");
+            }
+            return RedirectToAction("CrimeCoordinator", new { id });
+        }
     }
 }

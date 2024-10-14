@@ -9,5 +9,6 @@ namespace Miljoboven.Models
         IQueryable<Department> Departments { get; }
         Task<Errand> GetErrandDetails(int id);
         string SaveErrand(Errand errand);
+        void UpdateDepartment(int id, string department);
     }
 };

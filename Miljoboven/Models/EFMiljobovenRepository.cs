@@ -43,5 +43,12 @@ namespace Miljoboven.Models
 
             return errand.RefNumber;
         }
+
+        public void UpdateDepartment(int id, string department)
+        {
+            var errand = Errands.FirstOrDefault(e => e.ErrandId == id);
+            errand.DepartmentId = department;
+            _context.SaveChanges();
+        }
     }
 }
