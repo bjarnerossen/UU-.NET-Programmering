@@ -27,22 +27,22 @@ namespace Miljoboven.Controllers
         [HttpPost]
         public ViewResult Validate(Errand errand)
         {
-            HttpContext.Session.SetJson("NewErrand", errand);
-            return View("../Coordinator/Validate", errand);
+            HttpContext.Session.SetJson("CoordinatorNewErrand", errand);
+            return View(errand);
         }
 
         public ViewResult Thanks()
         {
-            var errand = HttpContext.Session.GetJson<Errand>("NewErrand");
+            var errand = HttpContext.Session.GetJson<Errand>("CoordinatorNewErrand");
             _repository.SaveErrand(errand);
             ViewBag.RefNumber = errand.RefNumber;
-            HttpContext.Session.Remove("NewErrand");
+            HttpContext.Session.Remove("CoordinatorNewErrand");
             return View(errand);
         }
 
         public ViewResult ReportCrime() // Form
         {
-            var newErrand = HttpContext.Session.GetJson<Errand>("NewErrand");
+            var newErrand = HttpContext.Session.GetJson<Errand>("CoordinatorNewErrand");
             if (newErrand == null)
             {
                 return View();

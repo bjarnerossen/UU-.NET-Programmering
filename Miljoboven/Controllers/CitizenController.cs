@@ -16,17 +16,17 @@ namespace Miljoboven.Controllers
         [HttpPost]
         public ViewResult Validate(Errand errand)
         {
-            HttpContext.Session.SetJson("NewErrand", errand);
-            return View("../Citizen/Validate", errand);
+            HttpContext.Session.SetJson("CitizenNewErrand", errand);
+            return View(errand);
 
         }
 
         public ViewResult Thanks()
         {
-            var errand = HttpContext.Session.GetJson<Errand>("NewErrand");
+            var errand = HttpContext.Session.GetJson<Errand>("CitizenNewErrand");
             _repository.SaveErrand(errand);
             ViewBag.RefNumber = errand.RefNumber;
-            HttpContext.Session.Remove("NewErrand");
+            HttpContext.Session.Remove("CitizenNewErrand");
             return View(errand);
         }
 

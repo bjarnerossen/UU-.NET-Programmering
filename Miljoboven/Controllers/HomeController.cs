@@ -15,7 +15,7 @@ namespace Miljoboven.Controllers
 
         public ViewResult Index()
         {
-            var newErrand = HttpContext.Session.GetJson<Errand>("NewErrand");
+            var newErrand = HttpContext.Session.GetJson<Errand>("CitizenNewErrand");
             if (newErrand == null)
             {
                 return View();
