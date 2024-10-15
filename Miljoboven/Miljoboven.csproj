@@ -13,6 +13,9 @@
     <Folder Include="wwwroot/" />
     <Folder Include="wwwroot/images/" />
     <Folder Include="wwwroot/stylesheet/" />
+    <Folder Include="wwwroot/uploaded-files/" />
+    <Folder Include="wwwroot/uploaded-files/uploaded-pictures/" />
+    <Folder Include="wwwroot/uploaded-files/uploaded-samples/" />
   </ItemGroup>
 
   <ItemGroup>

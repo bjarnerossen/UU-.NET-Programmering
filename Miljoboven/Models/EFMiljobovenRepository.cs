@@ -69,5 +69,49 @@ namespace Miljoboven.Models
 
             _context.SaveChanges();
         }
+
+        public void InvestigatorEdit(int id, string events, string information, string status)
+        {
+            var errand = Errands.FirstOrDefault(e => e.ErrandId == id);
+
+            if (errand == null) throw new InvalidOperationException("Errand not found.");
+
+            // Append events if not empty or whitespace
+            if (!string.IsNullOrWhiteSpace(events))
+            {
+                errand.InvestigatorAction += events.Trim() + " ";
+            }
+
+            // Append information if not empty or whitespace
+            if (!string.IsNullOrWhiteSpace(information))
+            {
+                errand.InvestigatorInfo += information.Trim() + " ";
+            }
+
+            // Update status if a valid option is selected
+            if (!string.IsNullOrWhiteSpace(status) && status != "Välj")
+            {
+                errand.StatusId = status;
+            }
+            _context.SaveChanges();
+        }
+
+        public void SavePicture(int id, string fileName)
+        {
+            var picture = new Picture();
+            picture.ErrandId = id;
+            picture.PictureName = fileName;
+            _context.Pictures.Add(picture);
+            _context.SaveChanges();
+        }
+
+        public void SaveSample(int id, string fileName)
+        {
+            var sample = new Sample();
+            sample.ErrandId = id;
+            sample.SampleName = fileName;
+            _context.Samples.Add(sample);
+            _context.SaveChanges();
+        }
     }
 }

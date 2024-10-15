@@ -10,30 +10,33 @@
 
 @await Component.InvokeAsync("ErrandDetails", ViewBag.ID)
 
-<section id="bottomColumn">
-    <h3>Redigera ärende</h3>
+<form asp-controller="Investigator" asp-action="SaveInvestigatorChanges" asp-route-id="@ViewBag.ID"
+    enctype="multipart/form-data" method="post">
+    <section id="bottomColumn">
+        <h3>Redigera ärende</h3>
 
-    <p class="label">Ytterligare information:</p>
-    <textarea name="information" rows="5" cols="60"></textarea>
+        <p class="label">Ytterligare information:</p>
+        <textarea name="information" rows="5" cols="60"></textarea>
 
-    <p class="label">Händelser:</p>
-    <textarea name="events" rows="5" cols="60"></textarea>
+        <p class="label">Händelser:</p>
+        <textarea name="events" rows="5" cols="60"></textarea>
 
-    <p class="label">Prover:</p>
-    <input type="file" name="loadSample" />
+        <p class="label">Prover:</p>
+        <input type="file" name="uploadSample" />
 
-    <p class="label">Ladda upp bilder:</p>
-    <input type="file" name="loadImage" />
+        <p class="label">Ladda upp bilder:</p>
+        <input type="file" name="uploadImage" />
 
-    <p class="label">Ändring av status:</p>
-    <select name="status">
-        @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
-        {
-            <option>@errandStatus.StatusName</option>
-        }
-    </select>
+        <p class="label">Ändring av status:</p>
+        <select name="status">
+            @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
+            {
+                <option>@errandStatus.StatusName</option>
+            }
+        </select>
 
-    <p>
-        <input class="button" type="submit" value="Spara ändringarna" />
-    </p>
-</section>
+        <p>
+            <input class="button" type="submit" value="Spara ändringarna" />
+        </p>
+    </section>
+</form>

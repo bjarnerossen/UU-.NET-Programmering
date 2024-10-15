@@ -85,6 +85,18 @@
       "PackagePath": "staticwebassets/stylesheet/style.css"
     },
     {
+      "Id": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-pictures/4637cb8b-bc0a-44c2-80d6-ab21a98b6bb8_john-cameron-FMrZLPdDyx4-unsplash.jpg",
+      "PackagePath": "staticwebassets/uploaded-files/uploaded-pictures/4637cb8b-bc0a-44c2-80d6-ab21a98b6bb8_john-cameron-FMrZLPdDyx4-unsplash.jpg"
+    },
+    {
+      "Id": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-pictures/c06f08d5-1a75-4adc-b367-ec4e17fe01b1_john-cameron-FMrZLPdDyx4-unsplash.jpg",
+      "PackagePath": "staticwebassets/uploaded-files/uploaded-pictures/c06f08d5-1a75-4adc-b367-ec4e17fe01b1_john-cameron-FMrZLPdDyx4-unsplash.jpg"
+    },
+    {
+      "Id": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-pictures/d694e5c1-654e-4930-8f09-1e641fa91c71_jon-tyson-OuOmA4_Sncc-unsplash.jpg",
+      "PackagePath": "staticwebassets/uploaded-files/uploaded-pictures/d694e5c1-654e-4930-8f09-1e641fa91c71_jon-tyson-OuOmA4_Sncc-unsplash.jpg"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Miljoboven.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

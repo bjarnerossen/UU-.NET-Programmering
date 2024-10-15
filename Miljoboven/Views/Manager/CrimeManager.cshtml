@@ -9,7 +9,7 @@
 
 @await Component.InvokeAsync("ErrandDetails", ViewBag.ID)
 
-<form asp-action="SaveManagerDecision" asp-route-id="@ViewBag.ID" method="post">
+<form asp-action="SaveManagerChanges" asp-route-id="@ViewBag.ID" method="post">
     <section id="bottomColumn">
         <h3>Redigera ärende</h3>
         <p>

@@ -26,7 +26,7 @@ namespace Miljoboven.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveManagerDecision(int id, string reason, bool noAction, string investigator)
+        public IActionResult SaveManagerChanges(int id, string reason, bool noAction, string investigator)
         {
             // Case 1: No action selected (Checkbox is checked)
             if (noAction)
