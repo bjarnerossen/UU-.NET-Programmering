@@ -31,7 +31,7 @@
         <select name="status">
             @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
             {
-                <option>@errandStatus.StatusName</option>
+                <option value="@errandStatus.StatusId">@errandStatus.StatusName</option>
             }
         </select>
 

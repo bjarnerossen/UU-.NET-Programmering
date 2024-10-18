@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets/stylesheet/style.css"
     },
     {
+      "Id": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-pictures/1e5aa245-a622-42a4-8a73-9c6243db4d63_john-cameron-FMrZLPdDyx4-unsplash.jpg",
+      "PackagePath": "staticwebassets/uploaded-files/uploaded-pictures/1e5aa245-a622-42a4-8a73-9c6243db4d63_john-cameron-FMrZLPdDyx4-unsplash.jpg"
+    },
+    {
       "Id": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-pictures/4637cb8b-bc0a-44c2-80d6-ab21a98b6bb8_john-cameron-FMrZLPdDyx4-unsplash.jpg",
       "PackagePath": "staticwebassets/uploaded-files/uploaded-pictures/4637cb8b-bc0a-44c2-80d6-ab21a98b6bb8_john-cameron-FMrZLPdDyx4-unsplash.jpg"
     },
@@ -95,6 +99,14 @@
     {
       "Id": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-pictures/d694e5c1-654e-4930-8f09-1e641fa91c71_jon-tyson-OuOmA4_Sncc-unsplash.jpg",
       "PackagePath": "staticwebassets/uploaded-files/uploaded-pictures/d694e5c1-654e-4930-8f09-1e641fa91c71_jon-tyson-OuOmA4_Sncc-unsplash.jpg"
+    },
+    {
+      "Id": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-samples/4d576a6c-f695-4245-bd27-961cc9af4408_jon-tyson-OuOmA4_Sncc-unsplash.jpg",
+      "PackagePath": "staticwebassets/uploaded-files/uploaded-samples/4d576a6c-f695-4245-bd27-961cc9af4408_jon-tyson-OuOmA4_Sncc-unsplash.jpg"
+    },
+    {
+      "Id": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-samples/6d8b680c-647d-4a46-b4a5-29743873e80a_john-cameron-FMrZLPdDyx4-unsplash.jpg",
+      "PackagePath": "staticwebassets/uploaded-files/uploaded-samples/6d8b680c-647d-4a46-b4a5-29743873e80a_john-cameron-FMrZLPdDyx4-unsplash.jpg"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Miljoboven.Microsoft.AspNetCore.StaticWebAssets.props",

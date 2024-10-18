@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ma7iEys156aHOdoP0wi48sLfYQwhykYlv/uoPmfEyKA=",
+  "Hash": "TDC8W2hXosCGpd58OoTvJ6et4LsliNL16HV9ycvwoi0=",
   "Source": "Miljoboven",
   "BasePath": "_content/Miljoboven",
   "Mode": "Default",
@@ -416,6 +416,25 @@
       "OriginalItemSpec": "wwwroot/stylesheet/style.css"
     },
     {
+      "Identity": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-pictures/1e5aa245-a622-42a4-8a73-9c6243db4d63_john-cameron-FMrZLPdDyx4-unsplash.jpg",
+      "SourceId": "Miljoboven",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bjarne/Documents/Miljoboven/wwwroot/",
+      "BasePath": "_content/Miljoboven",
+      "RelativePath": "uploaded-files/uploaded-pictures/1e5aa245-a622-42a4-8a73-9c6243db4d63_john-cameron-FMrZLPdDyx4-unsplash.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploaded-files/uploaded-pictures/1e5aa245-a622-42a4-8a73-9c6243db4d63_john-cameron-FMrZLPdDyx4-unsplash.jpg"
+    },
+    {
       "Identity": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-pictures/4637cb8b-bc0a-44c2-80d6-ab21a98b6bb8_john-cameron-FMrZLPdDyx4-unsplash.jpg",
       "SourceId": "Miljoboven",
       "SourceType": "Discovered",
@@ -471,6 +490,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploaded-files/uploaded-pictures/d694e5c1-654e-4930-8f09-1e641fa91c71_jon-tyson-OuOmA4_Sncc-unsplash.jpg"
+    },
+    {
+      "Identity": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-samples/4d576a6c-f695-4245-bd27-961cc9af4408_jon-tyson-OuOmA4_Sncc-unsplash.jpg",
+      "SourceId": "Miljoboven",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bjarne/Documents/Miljoboven/wwwroot/",
+      "BasePath": "_content/Miljoboven",
+      "RelativePath": "uploaded-files/uploaded-samples/4d576a6c-f695-4245-bd27-961cc9af4408_jon-tyson-OuOmA4_Sncc-unsplash.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploaded-files/uploaded-samples/4d576a6c-f695-4245-bd27-961cc9af4408_jon-tyson-OuOmA4_Sncc-unsplash.jpg"
+    },
+    {
+      "Identity": "/Users/bjarne/Documents/Miljoboven/wwwroot/uploaded-files/uploaded-samples/6d8b680c-647d-4a46-b4a5-29743873e80a_john-cameron-FMrZLPdDyx4-unsplash.jpg",
+      "SourceId": "Miljoboven",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bjarne/Documents/Miljoboven/wwwroot/",
+      "BasePath": "_content/Miljoboven",
+      "RelativePath": "uploaded-files/uploaded-samples/6d8b680c-647d-4a46-b4a5-29743873e80a_john-cameron-FMrZLPdDyx4-unsplash.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploaded-files/uploaded-samples/6d8b680c-647d-4a46-b4a5-29743873e80a_john-cameron-FMrZLPdDyx4-unsplash.jpg"
     }
   ]
 }

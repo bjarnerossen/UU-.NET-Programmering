@@ -66,8 +66,11 @@ namespace Miljoboven.Controllers
         public async Task<IActionResult> SaveInvestigatorChanges(int id, string events, string information, string status,
             IFormFile uploadImage, IFormFile uploadSample)
         {
-            // Update the investigator details in the repository
-            _repository.InvestigatorEdit(id, events, information, status);
+            // Validate that there is at least one non-empty field before calling the repository
+            if (!string.IsNullOrEmpty(events) || !string.IsNullOrEmpty(information) || !string.IsNullOrEmpty(status))
+            {
+                _repository.InvestigatorEdit(id, events, information, status);
+            }
 
             // Handle sample upload
             if (uploadSample != null)

@@ -28,23 +28,16 @@ namespace Miljoboven.Controllers
         [HttpPost]
         public IActionResult SaveManagerChanges(int id, string reason, bool noAction, string investigator)
         {
-            // Case 1: No action selected (Checkbox is checked)
-            if (noAction)
+            // Check if the investigator was not selected and no action was not taken
+            if (investigator == "Välj" && noAction == false)
             {
-                if (!string.IsNullOrEmpty(reason))
-                {
-                    _repository.ManagerEdit(id, reason, noAction, null);
-                    return RedirectToAction("StartManager");
-                }
+                return RedirectToAction("CrimeManager", new { id });
             }
-            // Case 2: Action selected (Assigning an investigator)
-            else if (!string.IsNullOrEmpty(investigator) && investigator != "Välj")
+            else
             {
-                _repository.ManagerEdit(id, null, noAction, investigator);
+                _repository.ManagerEdit(id, reason, noAction, investigator);
                 return RedirectToAction("StartManager");
             }
-            // Case 3: If no valid action (no reason for noAction and no valid investigator), remain on the current page
-            return RedirectToAction("CrimeManager", new { id });
         }
     }
 }
