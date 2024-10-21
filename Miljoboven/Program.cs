@@ -16,13 +16,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Home/Login";
-});
-
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.LoginPath = "/Home/Login";
-    options.AccessDeniedPath = "/Home/NoAccess";
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
 
@@ -35,6 +30,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     DBInitializer.EnsurePopulated(services);
+    IdentityInitializer.EnsurePopulated(services).Wait();
 }
 
 // Configure the HTTP request pipeline / middleware

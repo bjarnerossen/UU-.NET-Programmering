@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Miljoboven.Models;
 
 namespace Miljoboven.Controllers
 {
+    [Authorize(Roles = "Investigator")]
     public class InvestigatorController : Controller
     {
         private readonly IMiljobovenRepository _repository;
