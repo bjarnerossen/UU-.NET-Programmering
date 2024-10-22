@@ -15,5 +15,10 @@ namespace Miljoboven.Models
         void InvestigatorEdit(int id, string events, string information, string status);
         void SaveSample(int id, string fileName);
         void SavePicture(int id, string fileName);
+        IQueryable<MyErrand> CoordinatorErrands();
+        IQueryable<MyErrand> investigatorErrand(string employee);
+        IQueryable<MyErrand> GetErrands(string filter);
+        Employee GetEmployeeDetails(string employeeId);
+        IQueryable<EmployeeData> UserData();
     }
 };

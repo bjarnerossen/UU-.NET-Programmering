@@ -7,22 +7,31 @@ namespace Miljoboven.Controllers
     [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
-        // Inject the repository
         private readonly IMiljobovenRepository _repository;
+        private IHttpContextAccessor _contextAcc;
 
-        public ManagerController(IMiljobovenRepository repository)
+        public ManagerController(IMiljobovenRepository repository, IHttpContextAccessor cont)
         {
             _repository = repository;
+            _contextAcc = cont;
         }
 
         public ViewResult StartManager()
         {
+            var userId = _contextAcc.HttpContext.User.Identity.Name;
+            EmployeeData details = _repository.UserData().FirstOrDefault(d => d.EmployeeId == userId);
+            ViewBag.DepartmentName = details.DepartmentName;
+            ViewBag.DepartmentId = details.DepartmentId;
             return View(_repository);
         }
 
 
         public ViewResult CrimeManager(int id)
         {
+            var departmentId = _contextAcc.HttpContext.User.Identity.Name;
+            Employee user = _repository.GetEmployeeDetails(departmentId);
+            ViewBag.DepartmentId = user.DepartmentId;
+            ViewBag.Username = user.EmployeeName;
             ViewBag.ID = id;
             return View(_repository);
         }

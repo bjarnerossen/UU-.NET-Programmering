@@ -113,5 +113,82 @@ namespace Miljoboven.Models
             _context.Samples.Add(sample);
             _context.SaveChanges();
         }
+        public IQueryable<MyErrand> CoordinatorErrands()
+        {
+            var errandList = from errand in Errands
+                             join status in ErrandStatuses on errand.StatusId equals status.StatusId
+                             join department in Departments on errand.DepartmentId equals department.DepartmentId into departments
+                             from dep in departments.DefaultIfEmpty()
+                             join employee in Employees on errand.EmployeeId equals employee.EmployeeId into employees
+                             from emp in employees.DefaultIfEmpty()
+                             orderby errand.RefNumber descending
+                             select new MyErrand
+                             {
+                                 DateOfObservation = errand.DateOfObservation,
+                                 ErrandId = errand.ErrandId,
+                                 RefNumber = errand.RefNumber,
+                                 TypeOfCrime = errand.TypeOfCrime,
+                                 StatusName = status.StatusName,
+                                 DepartmentName = dep != null ? dep.DepartmentName : "Ej tillsatt",
+                                 EmployeeName = emp != null ? emp.EmployeeName : "Ej tillsatt"
+                             };
+            return errandList;
+        }
+
+        public IQueryable<MyErrand> GetErrands(string filter)
+        {
+            var errand = CoordinatorErrands();
+
+            if (string.IsNullOrEmpty(filter))
+            {
+                return errand;
+            }
+            else if (filter.StartsWith("DepartmentName:"))
+            {
+                string departmentName = filter.Substring("DepartmentName:".Length);
+                return errand.Where(e => e.DepartmentName == departmentName);
+            }
+            else if (filter.StartsWith("EmployeeName:"))
+            {
+                string employeeName = filter.Substring("EmployeeName:".Length);
+                return errand.Where(e => e.EmployeeName == employeeName);
+            }
+            else
+            {
+                return errand;
+            }
+        }
+
+        public IQueryable<MyErrand> investigatorErrand(string employee)
+        {
+            var errands = GetErrands("EmployeeName:" + employee);
+            var investigatorErrands = errands.Where(errand => errand.EmployeeName == employee);
+            return investigatorErrands;
+        }
+
+        public Employee GetEmployeeDetails(string employeeId)
+        {
+            return Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+        }
+
+        public IQueryable<EmployeeData> UserData()
+        {
+            var joinedData = Employees.Join(
+                Departments,
+                user => user.DepartmentId,
+                department => department.DepartmentId,
+                (user, department) => new EmployeeData()
+                {
+                    DepartmentId = department.DepartmentId,
+                    DepartmentName = department.DepartmentName,
+                    EmployeeName = user.EmployeeName,
+                    EmployeeId = user.EmployeeId
+                }
+            );
+
+            var orderedData = joinedData.OrderBy(user => user.EmployeeId);
+            return orderedData;
+        }
+
     }
 }

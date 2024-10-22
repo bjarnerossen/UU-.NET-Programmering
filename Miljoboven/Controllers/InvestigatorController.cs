@@ -8,19 +8,36 @@ namespace Miljoboven.Controllers
     public class InvestigatorController : Controller
     {
         private readonly IMiljobovenRepository _repository;
+        private IHttpContextAccessor _contextAcc;
 
-        public InvestigatorController(IMiljobovenRepository repository)
+        public InvestigatorController(IMiljobovenRepository repository, IHttpContextAccessor cont)
         {
             _repository = repository;
+            _contextAcc = cont;
         }
 
         public ViewResult StartInvestigator()
         {
+            var employeeId = _contextAcc.HttpContext.User.Identity.Name;
+            Employee investigator = _repository.GetEmployeeDetails(employeeId);
+            ViewBag.Username = investigator.EmployeeName;
             return View(_repository);
         }
 
         public ViewResult CrimeInvestigator(int id)
         {
+            var employeeId = _contextAcc.HttpContext.User.Identity.Name;
+
+            Employee investigator = null;
+            foreach (Employee employee in _repository.Employees)
+            {
+                if (employeeId == employee.EmployeeId)
+                {
+                    investigator = employee;
+                }
+            }
+
+            ViewBag.UserName = investigator.EmployeeName;
             ViewBag.ID = id;
             return View(_repository);
         }

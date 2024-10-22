@@ -1,4 +1,7 @@
-﻿@model Miljoboven.Models.Poco.LoginModel
+﻿@{
+    Layout = "_PreLoginLayout";
+}
+@model Miljoboven.Models.Poco.LoginModel
 
 <h2>Inloggning för Småstads personal</h2>
 <p class="info">En säker tjänst från Småstads IT-avdelning</p>
@@ -15,10 +18,11 @@
         <span asp-validation-for="Password"></span>
     </p>
     <p>
-        <input type="hidden" asp-for="ReturnUrl" />
+        <input class="button" type="submit" value="Logga in" />
     </p>
     <p>
-        <input type="submit" value="Logga in" />
+        <input type="hidden" asp-for="ReturnUrl" />
     </p>
+
     <div asp-validation-summary="All"></div>
 </form>

@@ -9,14 +9,20 @@ namespace Miljoboven.Controllers
     public class CoordinatorController : Controller
     {
         private readonly IMiljobovenRepository _repository;
+        private IHttpContextAccessor _contextAcc;
 
-        public CoordinatorController(IMiljobovenRepository repository)
+        public CoordinatorController(IMiljobovenRepository repository, IHttpContextAccessor cont)
         {
             _repository = repository;
+            _contextAcc = cont;
         }
 
         public ViewResult StartCoordinator()
         {
+            var userName = _contextAcc.HttpContext.User.Identity.Name;
+            Employee user = _repository.GetEmployeeDetails(userName);
+            ViewBag.Username = user.EmployeeName;
+
             return View(_repository);
         }
 
