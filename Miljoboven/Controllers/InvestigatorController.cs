@@ -7,39 +7,27 @@ namespace Miljoboven.Controllers
     [Authorize(Roles = "Investigator")]
     public class InvestigatorController : Controller
     {
-        private readonly IMiljobovenRepository _repository;
-        private IHttpContextAccessor _contextAcc;
+        private readonly IMiljobovenRepository repository;
+        private IHttpContextAccessor contextAcc;
 
-        public InvestigatorController(IMiljobovenRepository repository, IHttpContextAccessor cont)
+        public InvestigatorController(IMiljobovenRepository repo, IHttpContextAccessor cont)
         {
-            _repository = repository;
-            _contextAcc = cont;
+            repository = repo;
+            contextAcc = cont;
         }
 
         public ViewResult StartInvestigator()
         {
-            var employeeId = _contextAcc.HttpContext.User.Identity.Name;
-            Employee investigator = _repository.GetEmployeeDetails(employeeId);
-            ViewBag.Username = investigator.EmployeeName;
-            return View(_repository);
+            ViewBag.UserName = contextAcc.HttpContext.User.Identity.Name;
+            string user = contextAcc.HttpContext.User.Identity.Name;
+            ViewBag.ErrandList = repository.GetErrandListInvestigator(user);
+            return View(repository);
         }
 
         public ViewResult CrimeInvestigator(int id)
         {
-            var employeeId = _contextAcc.HttpContext.User.Identity.Name;
-
-            Employee investigator = null;
-            foreach (Employee employee in _repository.Employees)
-            {
-                if (employeeId == employee.EmployeeId)
-                {
-                    investigator = employee;
-                }
-            }
-
-            ViewBag.UserName = investigator.EmployeeName;
             ViewBag.ID = id;
-            return View(_repository);
+            return View(repository);
         }
 
         private async Task FileManager(int id, IFormFile file, bool isSample)
@@ -70,9 +58,9 @@ namespace Miljoboven.Controllers
 
                     // Save the file details to the appropriate table in the database
                     if (isSample)
-                        _repository.SaveSample(id, fileName);
+                        repository.SaveSample(id, fileName);
                     else
-                        _repository.SavePicture(id, fileName);
+                        repository.SavePicture(id, fileName);
                 }
                 catch (Exception ex)
                 {
@@ -85,10 +73,10 @@ namespace Miljoboven.Controllers
         public async Task<IActionResult> SaveInvestigatorChanges(int id, string events, string information, string status,
             IFormFile uploadImage, IFormFile uploadSample)
         {
-            // Validate that there is at least one non-empty field before calling the repository
+            // Validate that there is at least one non-empty field before calling the repo
             if (!string.IsNullOrEmpty(events) || !string.IsNullOrEmpty(information) || !string.IsNullOrEmpty(status))
             {
-                _repository.InvestigatorEdit(id, events, information, status);
+                repository.InvestigatorEdit(id, events, information, status);
             }
 
             // Handle sample upload

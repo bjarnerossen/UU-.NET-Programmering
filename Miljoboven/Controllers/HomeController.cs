@@ -6,11 +6,11 @@ namespace Miljoboven.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMiljobovenRepository _repository;
+        private readonly IMiljobovenRepository repository;
 
-        public HomeController(IMiljobovenRepository repository)
+        public HomeController(IMiljobovenRepository repo)
         {
-            _repository = repository;
+            repository = repo;
         }
 
         public ViewResult Index()

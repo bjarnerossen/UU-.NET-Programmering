@@ -8,28 +8,26 @@ namespace Miljoboven.Controllers
     [Authorize(Roles = "Coordinator")]
     public class CoordinatorController : Controller
     {
-        private readonly IMiljobovenRepository _repository;
-        private IHttpContextAccessor _contextAcc;
+        private readonly IMiljobovenRepository repository;
+        private IHttpContextAccessor contextAcc;
 
-        public CoordinatorController(IMiljobovenRepository repository, IHttpContextAccessor cont)
+        public CoordinatorController(IMiljobovenRepository repo, IHttpContextAccessor cont)
         {
-            _repository = repository;
-            _contextAcc = cont;
+            repository = repo;
+            contextAcc = cont;
         }
 
         public ViewResult StartCoordinator()
         {
-            var userName = _contextAcc.HttpContext.User.Identity.Name;
-            Employee user = _repository.GetEmployeeDetails(userName);
-            ViewBag.Username = user.EmployeeName;
-
-            return View(_repository);
+            ViewBag.Username = contextAcc.HttpContext.User.Identity.Name;
+            ViewBag.ErrandList = repository.GetErrandListCoordinator();
+            return View(repository);
         }
 
         public ViewResult CrimeCoordinator(int id)
         {
             ViewBag.ID = id;
-            return View(_repository); ;
+            return View(repository); ;
         }
 
         [HttpPost]
@@ -42,7 +40,7 @@ namespace Miljoboven.Controllers
         public ViewResult Thanks()
         {
             var errand = HttpContext.Session.GetJson<Errand>("CoordinatorNewErrand");
-            _repository.SaveErrand(errand);
+            repository.SaveErrand(errand);
             ViewBag.RefNumber = errand.RefNumber;
             HttpContext.Session.Remove("CoordinatorNewErrand");
             return View(errand);
@@ -66,7 +64,7 @@ namespace Miljoboven.Controllers
         {
             if (department != null && department != "Välj" && department != "D00")
             {
-                _repository.UpdateDepartment(id, department);
+                repository.UpdateDepartment(id, department);
                 return RedirectToAction("StartCoordinator");
             }
             return RedirectToAction("CrimeCoordinator", new { id });

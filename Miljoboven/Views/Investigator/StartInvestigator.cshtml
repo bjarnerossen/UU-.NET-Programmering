@@ -43,18 +43,18 @@
         <th>Handläggare</th>
     </tr>
 
-    @foreach (MyErrand errands in Model.investigatorErrand(ViewBag.UserName))
+    @foreach (MyErrand errand in ViewBag.ErrandList)
     {
         <tr>
-            <td>@errands.DateOfObservation.ToShortDateString()</td>
+            <td>@errand.DateOfObservation.ToShortDateString()</td>
             <td>
                 <a asp-controller="Investigator" asp-action="CrimeInvestigator"
-                    asp-route-id="@errands.ErrandId">@errands.RefNumber</a>
+                    asp-route-id="@errand.ErrandId">@errand.RefNumber</a>
             </td>
-            <td>@errands.TypeOfCrime</td>
-            <td>@errands.StatusName</td>
-            <td>@errands.DepartmentName</td>
-            <td>@errands.EmployeeName</td>
+            <td>@errand.TypeOfCrime</td>
+            <td>@errand.StatusName</td>
+            <td>@errand.DepartmentName</td>
+            <td>@errand.EmployeeName</td>
         </tr>
     }
 </table>

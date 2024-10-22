@@ -6,11 +6,11 @@ namespace Miljoboven.Controllers
 {
     public class CitizenController : Controller
     {
-        private readonly IMiljobovenRepository _repository;
+        private readonly IMiljobovenRepository repository;
 
-        public CitizenController(IMiljobovenRepository repository)
+        public CitizenController(IMiljobovenRepository repo)
         {
-            _repository = repository;
+            repository = repo;
         }
 
         [HttpPost]
@@ -24,7 +24,7 @@ namespace Miljoboven.Controllers
         public ViewResult Thanks()
         {
             var errand = HttpContext.Session.GetJson<Errand>("CitizenNewErrand");
-            _repository.SaveErrand(errand);
+            repository.SaveErrand(errand);
             ViewBag.RefNumber = errand.RefNumber;
             HttpContext.Session.Remove("CitizenNewErrand");
             return View(errand);

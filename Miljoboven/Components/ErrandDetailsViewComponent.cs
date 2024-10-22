@@ -5,16 +5,16 @@ namespace Miljoboven.Components;
 
 public class ErrandDetailsViewComponent : ViewComponent
 {
-    private readonly IMiljobovenRepository _repository;
+    private readonly IMiljobovenRepository repository;
 
-    public ErrandDetailsViewComponent(IMiljobovenRepository repository)
+    public ErrandDetailsViewComponent(IMiljobovenRepository repo)
     {
-        _repository = repository;
+        repository = repo;
     }
 
     public async Task<IViewComponentResult> InvokeAsync(int id)
     {
-        var errandDetails = await _repository.GetErrandDetails(id);
+        var errandDetails = await repository.GetErrandDetails(id);
         return View(errandDetails);
     }
 }
