@@ -4,21 +4,21 @@ namespace Miljoboven.Models
 {
     public class EFMiljobovenRepository : IMiljobovenRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
-        public EFMiljobovenRepository(ApplicationDbContext context)
+        public EFMiljobovenRepository(ApplicationDbContext ctx)
         {
-            _context = context;
+            context = ctx;
         }
 
-        public IQueryable<Department> Departments => _context.Departments;
-        public IQueryable<Errand> Errands => _context.Errands.Include(e => e.Samples).Include(e => e.Pictures);
+        public IQueryable<Department> Departments => context.Departments;
+        public IQueryable<Errand> Errands => context.Errands.Include(e => e.Samples).Include(e => e.Pictures);
 
-        public IQueryable<ErrandStatus> ErrandStatuses => _context.ErrandStatuses;
-        public IQueryable<Employee> Employees => _context.Employees;
-        public IQueryable<Picture> Pictures => _context.Pictures;
-        public IQueryable<Sample> Samples => _context.Samples;
-        public IQueryable<Sequence> Sequences => _context.Sequences;
+        public IQueryable<ErrandStatus> ErrandStatuses => context.ErrandStatuses;
+        public IQueryable<Employee> Employees => context.Employees;
+        public IQueryable<Picture> Pictures => context.Pictures;
+        public IQueryable<Sample> Samples => context.Samples;
+        public IQueryable<Sequence> Sequences => context.Sequences;
 
         // Get ErrandDetails by int id
         public Task<Errand> GetErrandDetails(int id)
@@ -38,8 +38,8 @@ namespace Miljoboven.Models
             errand.RefNumber = $"{DateTime.Now.Year}-45-{sequence.CurrentValue++}";
             errand.StatusId = "S_A";
 
-            _context.Errands.Add(errand);
-            _context.SaveChanges();
+            context.Errands.Add(errand);
+            context.SaveChanges();
 
             return errand.RefNumber;
         }
@@ -48,7 +48,7 @@ namespace Miljoboven.Models
         {
             var errand = Errands.FirstOrDefault(e => e.ErrandId == id);
             errand.DepartmentId = department;
-            _context.SaveChanges();
+            context.SaveChanges();
         }
 
         public void ManagerEdit(int id, string reason, bool noAction, string investigator)
@@ -67,7 +67,7 @@ namespace Miljoboven.Models
                 errand.EmployeeId = investigator;
             }
 
-            _context.SaveChanges();
+            context.SaveChanges();
         }
 
         public void InvestigatorEdit(int id, string events, string information, string status)
@@ -93,7 +93,7 @@ namespace Miljoboven.Models
             {
                 errand.StatusId = status;
             }
-            _context.SaveChanges();
+            context.SaveChanges();
         }
 
         public void SavePicture(int id, string fileName)
@@ -101,8 +101,8 @@ namespace Miljoboven.Models
             var picture = new Picture();
             picture.ErrandId = id;
             picture.PictureName = fileName;
-            _context.Pictures.Add(picture);
-            _context.SaveChanges();
+            context.Pictures.Add(picture);
+            context.SaveChanges();
         }
 
         public void SaveSample(int id, string fileName)
@@ -110,8 +110,8 @@ namespace Miljoboven.Models
             var sample = new Sample();
             sample.ErrandId = id;
             sample.SampleName = fileName;
-            _context.Samples.Add(sample);
-            _context.SaveChanges();
+            context.Samples.Add(sample);
+            context.SaveChanges();
         }
         public IQueryable<MyErrand> GetErrandListCoordinator()
         {
@@ -165,36 +165,36 @@ namespace Miljoboven.Models
 
         }
 
-    public IQueryable<MyErrand> GetErrandListManager(String userName)
-    {
-      Employee emp = GetEmployee(userName);
+        public IQueryable<MyErrand> GetErrandListManager(String userName)
+        {
+            Employee emp = GetEmployee(userName);
 
 
-      var errandList = from err in Errands
+            var errandList = from err in Errands
 
-                       join stat in ErrandStatuses on err.StatusId equals stat.StatusId
-                       join dep in Departments on err.DepartmentId equals dep.DepartmentId
-                       into departmentErrand
-                       from deptE in departmentErrand
-                       where deptE.DepartmentId == emp.DepartmentId
+                             join stat in ErrandStatuses on err.StatusId equals stat.StatusId
+                             join dep in Departments on err.DepartmentId equals dep.DepartmentId
+                             into departmentErrand
+                             from deptE in departmentErrand
+                             where deptE.DepartmentId == emp.DepartmentId
 
-                       join em in Employees on err.EmployeeId equals em.EmployeeId into employeeErrand
-                       from empE in employeeErrand.DefaultIfEmpty()
-                       orderby err.RefNumber descending
+                             join em in Employees on err.EmployeeId equals em.EmployeeId into employeeErrand
+                             from empE in employeeErrand.DefaultIfEmpty()
+                             orderby err.RefNumber descending
 
-                       select new MyErrand
-                       {
-                         DateOfObservation = err.DateOfObservation,
-                         ErrandId = err.ErrandId,
-                         RefNumber = err.RefNumber,
-                         TypeOfCrime = err.TypeOfCrime,
-                         StatusName = stat.StatusName,
-                         DepartmentName = (err.DepartmentId == null ? "ej tillsatt" : deptE.DepartmentName),
-                         EmployeeName = (err.EmployeeId == null ? "ej tillsatt" : empE.EmployeeName)
-                       };
-      return errandList;
+                             select new MyErrand
+                             {
+                                 DateOfObservation = err.DateOfObservation,
+                                 ErrandId = err.ErrandId,
+                                 RefNumber = err.RefNumber,
+                                 TypeOfCrime = err.TypeOfCrime,
+                                 StatusName = stat.StatusName,
+                                 DepartmentName = (err.DepartmentId == null ? "ej tillsatt" : deptE.DepartmentName),
+                                 EmployeeName = (err.EmployeeId == null ? "ej tillsatt" : empE.EmployeeName)
+                             };
+            return errandList;
 
-    }
+        }
 
         public Employee GetEmployee(String userName)
         {
@@ -210,57 +210,21 @@ namespace Miljoboven.Models
 
         }
 
-   public String GetDepartmentFromEmployee(String user)
-    {
-      Employee em = new Employee();
-
-      foreach (Employee em2 in Employees)
-      {
-        if (em2.EmployeeId == user)
+        public String GetDepartmentFromEmployee(String user)
         {
-          em = em2;
+            Employee em = new Employee();
+
+            foreach (Employee em2 in Employees)
+            {
+                if (em2.EmployeeId == user)
+                {
+                    em = em2;
+                }
+            }
+            String depart = em.DepartmentId;
+            return depart;
+
         }
-      }
-      String depart = em.DepartmentId;
-      return depart;
-      
-    }
-
-        // public IQueryable<MyErrand> GetErrands(string filter)
-        // {
-        //     var errand = CoordinatorErrands();
-
-        //     if (string.IsNullOrEmpty(filter))
-        //     {
-        //         return errand;
-        //     }
-        //     else if (filter.StartsWith("DepartmentName:"))
-        //     {
-        //         string departmentName = filter.Substring("DepartmentName:".Length);
-        //         return errand.Where(e => e.DepartmentName == departmentName);
-        //     }
-        //     else if (filter.StartsWith("EmployeeName:"))
-        //     {
-        //         string employeeName = filter.Substring("EmployeeName:".Length);
-        //         return errand.Where(e => e.EmployeeName == employeeName);
-        //     }
-        //     else
-        //     {
-        //         return errand;
-        //     }
-        // }
-
-        // public IQueryable<MyErrand> investigatorErrand(string employee)
-        // {
-        //     var errands = GetErrands("EmployeeName:" + employee);
-        //     var investigatorErrands = errands.Where(errand => errand.EmployeeName == employee);
-        //     return investigatorErrands;
-        // }
-
-        // public Employee GetEmployeeDetails(string employeeId)
-        // {
-        //     return Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
-        // }
 
         public IQueryable<EmployeeData> UserData()
         {

@@ -13,12 +13,12 @@ namespace Miljoboven.Models
         // to the database. This method ensures the application has the necessary initial data to operate properly.
         public static void EnsurePopulated(IServiceProvider services)
         {
-            var context = services.GetRequiredService<ApplicationDbContext>();
+            var ctx = services.GetRequiredService<ApplicationDbContext>();
 
             // Kontrollerar om tabellen Departments har något innehåll
-            if (!context.Departments.Any())
+            if (!ctx.Departments.Any())
             {
-                context.Departments.AddRange(
+                ctx.Departments.AddRange(
                     new Department
                     {
                         DepartmentId = "D00",
@@ -50,32 +50,32 @@ namespace Miljoboven.Models
                         DepartmentName = "Renhållning och Avfall"
                     }
                 );
-                context.SaveChanges();
+                ctx.SaveChanges();
             }
 
             // Kontrollerar om tabellen ErrandStatuses har något innehåll
-            if (!context.ErrandStatuses.Any())
+            if (!ctx.ErrandStatuses.Any())
             {
-                context.ErrandStatuses.AddRange(
+                ctx.ErrandStatuses.AddRange(
                     new ErrandStatus { StatusId = "S_A", StatusName = "Inrapporterad" },
                     new ErrandStatus { StatusId = "S_B", StatusName = "Ingen åtgärd" },
                     new ErrandStatus { StatusId = "S_C", StatusName = "Påbörjad" },
                     new ErrandStatus { StatusId = "S_D", StatusName = "Klar" }
                 );
-                context.SaveChanges();
+                ctx.SaveChanges();
             }
 
             // Kontrollerar om tabellen Sequences har något innehåll
-            if (!context.Sequences.Any())
+            if (!ctx.Sequences.Any())
             {
-                context.Sequences.Add(new Sequence { CurrentValue = 200 });
-                context.SaveChanges();
+                ctx.Sequences.Add(new Sequence { CurrentValue = 200 });
+                ctx.SaveChanges();
             }
 
             // Kontrollerar om tabellen Employees har något innehåll
-            if (!context.Employees.Any())
+            if (!ctx.Employees.Any())
             {
-                context.Employees.AddRange(
+                ctx.Employees.AddRange(
                     new Employee
                     {
                         EmployeeId = "E001",
@@ -224,13 +224,13 @@ namespace Miljoboven.Models
                         DepartmentId = "D05"
                     }
                 );
-                context.SaveChanges();
+                ctx.SaveChanges();
             }
 
             // Kontrollerar om tabellen Errands har något innehåll
-            if (!context.Errands.Any())
+            if (!ctx.Errands.Any())
             {
-                context.Errands.AddRange(
+                ctx.Errands.AddRange(
                     new Errand
                     {
                         RefNumber = "2023-45-195",
@@ -292,7 +292,7 @@ namespace Miljoboven.Models
                         EmployeeId = "E402"
                     }
                 );
-                context.SaveChanges();
+                ctx.SaveChanges();
             }
         }
     }

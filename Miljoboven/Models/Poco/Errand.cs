@@ -6,7 +6,7 @@ namespace Miljoboven.Models
     {
         public int ErrandId { get; set; }
 
-        public String RefNumber { get; set; }
+        public string RefNumber { get; set; }
 
         [Required(ErrorMessage = "Du måste fylla i en Plats.")]
         public string Place { get; set; }

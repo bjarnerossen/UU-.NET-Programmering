@@ -3,11 +3,11 @@ using Miljoboven.Models;
 
 namespace Miljoboven.Models
 {
-    // The ApplicationDbContext class is the database context for this application.
+    // The ApplicationDbContext class is the database ctx for this application.
     // It inherits from DbContext, which provides functionality for interacting with the database.
     public class ApplicationDbContext : DbContext
     {
-        // Constructor that accepts DbContextOptions to configure the context (e.g., specifying the database connection)
+        // Constructor that accepts DbContextOptions to configure the ctx (e.g., specifying the database connection)
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }

@@ -18,21 +18,21 @@ namespace Miljoboven.Controllers
 
         public ViewResult StartManager()
         {
-	        ViewBag.UserName = contextAcc.HttpContext.User.Identity.Name;
-			string user = contextAcc.HttpContext.User.Identity.Name;
-			ViewBag.ErrandList = repository.GetErrandListManager(user);
-			ViewBag.Employee = repository.GetEmployee(user);
-			ViewBag.Department = repository.GetDepartmentFromEmployee(user);
+            ViewBag.UserName = contextAcc.HttpContext.User.Identity.Name;
+            string user = contextAcc.HttpContext.User.Identity.Name;
+            ViewBag.ErrandList = repository.GetErrandListManager(user);
+            ViewBag.Employee = repository.GetEmployee(user);
+            ViewBag.Department = repository.GetDepartmentFromEmployee(user);
             return View(repository);
         }
 
 
         public ViewResult CrimeManager(int id)
         {
-            // var departmentId = contextAcc.HttpContext.User.Identity.Name;
-            // Employee user = repository.GetEmployeeDetails(departmentId);
-            // ViewBag.DepartmentId = user.DepartmentId;
-            // ViewBag.Username = user.EmployeeName;
+            ViewBag.UserName = contextAcc.HttpContext.User.Identity.Name;
+            string user = contextAcc.HttpContext.User.Identity.Name;
+            ViewBag.Employee = repository.GetEmployee(user);
+            ViewBag.Department = repository.GetDepartmentFromEmployee(user);
             ViewBag.ID = id;
             return View(repository);
         }
