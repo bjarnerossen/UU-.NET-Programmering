@@ -48,7 +48,7 @@ namespace Miljoboven.Controllers
             // Check if the result list is empty
             if (!errandList.Any())
             {
-                ViewBag.Message = "Inga ärenden hittades.";
+                ViewBag.Message = $"Inga ärenden hittades för:\nAvdelning: {department} \nStatus: {status}";
             }
 
             // Assign the filtered list to the view

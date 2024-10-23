@@ -21,7 +21,7 @@
                     <option selected="">Välj alla</option>
                     @foreach (ErrandStatus errandStatus in Model.ErrandStatuses)
                     {
-                        <option value="@errandStatus.StatusId">@errandStatus.StatusName</option>
+                        <option value="@errandStatus.StatusName">@errandStatus.StatusName</option>
                     }
                 </select>
             </td>
@@ -32,6 +32,11 @@
     </table>
 </form>
 
+<!-- Message when no errands found -->
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <p>@ViewBag.Message</p>
+}
 <!--Nedan ser man en lista på ärenden-->
 <table>
     <tr>

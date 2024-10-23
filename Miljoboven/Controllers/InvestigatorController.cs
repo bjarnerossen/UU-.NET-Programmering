@@ -16,11 +16,37 @@ namespace Miljoboven.Controllers
             contextAcc = cont;
         }
 
-        public ViewResult StartInvestigator()
+        public ViewResult StartInvestigator(string status, string caseNumber)
         {
             ViewBag.UserName = contextAcc.HttpContext.User.Identity.Name;
             string user = contextAcc.HttpContext.User.Identity.Name;
-            ViewBag.ErrandList = repository.GetErrandListInvestigator(user);
+
+            // Get the complete errand list
+            var errandList = repository.GetErrandListInvestigator(user).ToList();
+
+            // If a case number is provided, filter the list by the exact case number
+            if (!string.IsNullOrWhiteSpace(caseNumber))
+            {
+                errandList = errandList.Where(e => e.RefNumber == caseNumber).ToList();
+            }
+            else
+            {
+                // Filter by status if it's not "Välj alla" or empty
+                if (!string.IsNullOrWhiteSpace(status) && status != "Välj alla")
+                {
+                    errandList = errandList.Where(e => e.StatusName == status).ToList();
+                }
+            }
+
+            // Check if the result list is empty
+            if (!errandList.Any())
+            {
+                ViewBag.Message = $"Inga ärenden hittades för: \nStatus: {status}";
+            }
+
+            // Assign the filtered list to the view
+            ViewBag.ErrandList = errandList;
+
             return View(repository);
         }
 
