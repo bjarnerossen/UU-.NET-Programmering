@@ -22,36 +22,26 @@ namespace Miljoboven.Controllers
         {
             ViewBag.Username = contextAcc.HttpContext.User.Identity.Name;
 
-            // Get the complete errand list
             var errandList = repository.GetErrandListCoordinator().ToList();
-
-            // If a case number is provided, filter the list by the exact case number
             if (!string.IsNullOrWhiteSpace(caseNumber))
             {
                 errandList = errandList.Where(e => e.RefNumber == caseNumber).ToList();
             }
             else
             {
-                // Filter by status if it's not "Välj alla" or empty
                 if (!string.IsNullOrWhiteSpace(status) && status != "Välj alla")
                 {
                     errandList = errandList.Where(e => e.StatusName == status).ToList();
                 }
-
-                // Filter by department if it's not "Välj alla" or empty
                 if (!string.IsNullOrWhiteSpace(department) && department != "Välj alla")
                 {
                     errandList = errandList.Where(e => e.DepartmentName == department).ToList();
                 }
             }
-
-            // Check if the result list is empty
             if (!errandList.Any())
             {
                 ViewBag.Message = $"Inga ärenden hittades för:\nAvdelning: {department} \nStatus: {status}";
             }
-
-            // Assign the filtered list to the view
             ViewBag.ErrandList = errandList;
 
             return View(repository);

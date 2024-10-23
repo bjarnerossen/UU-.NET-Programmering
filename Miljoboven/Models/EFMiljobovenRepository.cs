@@ -135,7 +135,7 @@ namespace Miljoboven.Models
             return errandList;
         }
 
-        public IQueryable<MyErrand> GetErrandListInvestigator(String userName)
+        public IQueryable<MyErrand> GetErrandListInvestigator(string userName)
         {
             Employee emp = GetEmployee(userName);
 
@@ -165,7 +165,7 @@ namespace Miljoboven.Models
 
         }
 
-        public IQueryable<MyErrand> GetErrandListManager(String userName)
+        public IQueryable<MyErrand> GetErrandListManager(string userName)
         {
             Employee emp = GetEmployee(userName);
 
@@ -196,7 +196,7 @@ namespace Miljoboven.Models
 
         }
 
-        public Employee GetEmployee(String userName)
+        public Employee GetEmployee(string userName)
         {
             Employee emp = new Employee();
             foreach (Employee em in Employees)
@@ -210,7 +210,7 @@ namespace Miljoboven.Models
 
         }
 
-        public String GetDepartmentFromEmployee(String user)
+        public string GetDepartmentFromEmployee(string user)
         {
             Employee em = new Employee();
 
@@ -244,6 +244,5 @@ namespace Miljoboven.Models
             var orderedData = joinedData.OrderBy(user => user.EmployeeId);
             return orderedData;
         }
-
     }
 }

@@ -16,11 +16,33 @@ namespace Miljoboven.Controllers
             contextAcc = cont;
         }
 
-        public ViewResult StartManager()
+        [HttpGet]
+        public ViewResult StartManager(string status, string investigator, string caseNumber)
         {
             ViewBag.UserName = contextAcc.HttpContext.User.Identity.Name;
             string user = contextAcc.HttpContext.User.Identity.Name;
-            ViewBag.ErrandList = repository.GetErrandListManager(user);
+
+            var errandList = repository.GetErrandListManager(user).ToList();
+            if (!string.IsNullOrWhiteSpace(caseNumber))
+            {
+                errandList = errandList.Where(e => e.RefNumber == caseNumber).ToList();
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(status) && status != "Välj alla")
+                {
+                    errandList = errandList.Where(e => e.StatusName == status).ToList();
+                }
+                if (!string.IsNullOrWhiteSpace(investigator) && investigator != "Välj alla")
+                {
+                    errandList = errandList.Where(e => e.EmployeeName == investigator).ToList();
+                }
+            }
+            if (!errandList.Any())
+            {
+                ViewBag.Message = $"Inga ärenden hittades för: \nStatus: {status} \nHandläggare: {investigator}";
+            }
+            ViewBag.ErrandList = errandList;
             ViewBag.Employee = repository.GetEmployee(user);
             ViewBag.Department = repository.GetDepartmentFromEmployee(user);
             return View(repository);

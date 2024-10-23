@@ -16,10 +16,10 @@ namespace Miljoboven.Models
         void SaveSample(int id, string fileName);
         void SavePicture(int id, string fileName);
         public IQueryable<MyErrand> GetErrandListCoordinator();
-        public IQueryable<MyErrand> GetErrandListInvestigator(String userName);
-        public IQueryable<MyErrand> GetErrandListManager(String userName);
-        public Employee GetEmployee(String userName);
-        public String GetDepartmentFromEmployee(String user);
+        public IQueryable<MyErrand> GetErrandListInvestigator(string userName);
+        public IQueryable<MyErrand> GetErrandListManager(string userName);
+        public Employee GetEmployee(string userName);
+        public string GetDepartmentFromEmployee(string user);
         IQueryable<EmployeeData> UserData();
     }
 };
