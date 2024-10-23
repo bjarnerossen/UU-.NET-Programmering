@@ -23,28 +23,18 @@ namespace Miljoboven.Controllers
             string user = contextAcc.HttpContext.User.Identity.Name;
 
             var errandList = repository.GetErrandListManager(user).ToList();
-            if (!string.IsNullOrWhiteSpace(caseNumber))
-            {
-                errandList = errandList.Where(e => e.RefNumber == caseNumber).ToList();
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(status) && status != "Välj alla")
-                {
-                    errandList = errandList.Where(e => e.StatusName == status).ToList();
-                }
-                if (!string.IsNullOrWhiteSpace(investigator) && investigator != "Välj alla")
-                {
-                    errandList = errandList.Where(e => e.EmployeeName == investigator).ToList();
-                }
-            }
+
+            errandList = repository.FilterErrands(errandList, status, department: null, investigator: investigator, caseNumber: caseNumber);
+
             if (!errandList.Any())
             {
                 ViewBag.Message = $"Inga ärenden hittades för: \nStatus: {status} \nHandläggare: {investigator}";
             }
+
             ViewBag.ErrandList = errandList;
-            ViewBag.Employee = repository.GetEmployee(user);
-            ViewBag.Department = repository.GetDepartmentFromEmployee(user);
+            ViewBag.Employee = repository.GetEmployeeByUserName(user);
+            ViewBag.Department = repository.GetDepartmentIdByUserName(user);
+
             return View(repository);
         }
 
@@ -53,8 +43,8 @@ namespace Miljoboven.Controllers
         {
             ViewBag.UserName = contextAcc.HttpContext.User.Identity.Name;
             string user = contextAcc.HttpContext.User.Identity.Name;
-            ViewBag.Employee = repository.GetEmployee(user);
-            ViewBag.Department = repository.GetDepartmentFromEmployee(user);
+            ViewBag.Employee = repository.GetEmployeeByUserName(user);
+            ViewBag.Department = repository.GetDepartmentIdByUserName(user);
             ViewBag.ID = id;
             return View(repository);
         }

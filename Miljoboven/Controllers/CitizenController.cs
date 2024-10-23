@@ -17,6 +17,7 @@ namespace Miljoboven.Controllers
         public ViewResult Validate(Errand errand)
         {
             HttpContext.Session.SetJson("CitizenNewErrand", errand);
+            ViewBag.errand = errand;
             return View(errand);
 
         }

@@ -21,27 +21,15 @@ namespace Miljoboven.Controllers
         public ViewResult StartCoordinator(string status, string department, string caseNumber)
         {
             ViewBag.Username = contextAcc.HttpContext.User.Identity.Name;
-
             var errandList = repository.GetErrandListCoordinator().ToList();
-            if (!string.IsNullOrWhiteSpace(caseNumber))
-            {
-                errandList = errandList.Where(e => e.RefNumber == caseNumber).ToList();
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(status) && status != "Välj alla")
-                {
-                    errandList = errandList.Where(e => e.StatusName == status).ToList();
-                }
-                if (!string.IsNullOrWhiteSpace(department) && department != "Välj alla")
-                {
-                    errandList = errandList.Where(e => e.DepartmentName == department).ToList();
-                }
-            }
+
+            errandList = repository.FilterErrands(errandList, status, department, caseNumber: caseNumber);
+
             if (!errandList.Any())
             {
                 ViewBag.Message = $"Inga ärenden hittades för:\nAvdelning: {department} \nStatus: {status}";
             }
+
             ViewBag.ErrandList = errandList;
 
             return View(repository);
@@ -57,6 +45,7 @@ namespace Miljoboven.Controllers
         public ViewResult Validate(Errand errand)
         {
             HttpContext.Session.SetJson("CoordinatorNewErrand", errand);
+            ViewBag.errand = errand;
             return View(errand);
         }
 

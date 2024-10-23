@@ -20,7 +20,6 @@ namespace Miljoboven.Models
         public IQueryable<Sample> Samples => context.Samples;
         public IQueryable<Sequence> Sequences => context.Sequences;
 
-        // Get ErrandDetails by int id
         public Task<Errand> GetErrandDetails(int id)
         {
             return Task.FromResult(Errands.FirstOrDefault(e => e.ErrandId == id));
@@ -137,7 +136,7 @@ namespace Miljoboven.Models
 
         public IQueryable<MyErrand> GetErrandListInvestigator(string userName)
         {
-            Employee emp = GetEmployee(userName);
+            Employee emp = GetEmployeeByUserName(userName);
 
             var errandList = from err in Errands
 
@@ -167,7 +166,7 @@ namespace Miljoboven.Models
 
         public IQueryable<MyErrand> GetErrandListManager(string userName)
         {
-            Employee emp = GetEmployee(userName);
+            Employee emp = GetEmployeeByUserName(userName);
 
 
             var errandList = from err in Errands
@@ -196,34 +195,36 @@ namespace Miljoboven.Models
 
         }
 
-        public Employee GetEmployee(string userName)
+        public Employee GetEmployeeByUserName(string userName)
         {
-            Employee emp = new Employee();
-            foreach (Employee em in Employees)
+            Employee matchedEmployee = null;
+            foreach (Employee employee in Employees)
             {
-                if (em.EmployeeId == userName)
+                if (employee.EmployeeId == userName)
                 {
-                    emp = em;
+                    matchedEmployee = employee;
+                    break;
                 }
             }
-            return emp;
-
+            return matchedEmployee;
         }
 
-        public string GetDepartmentFromEmployee(string user)
+        public string GetDepartmentIdByUserName(string userName)
         {
-            Employee em = new Employee();
-
-            foreach (Employee em2 in Employees)
+            Employee matchedEmployee = null;
+            foreach (Employee employee in Employees)
             {
-                if (em2.EmployeeId == user)
+                if (employee.EmployeeId == userName)
                 {
-                    em = em2;
+                    matchedEmployee = employee;
+                    break;
                 }
             }
-            String depart = em.DepartmentId;
-            return depart;
-
+            if (matchedEmployee == null)
+            {
+                return null;
+            }
+            return matchedEmployee.DepartmentId;
         }
 
         public IQueryable<EmployeeData> UserData()
@@ -243,6 +244,33 @@ namespace Miljoboven.Models
 
             var orderedData = joinedData.OrderBy(user => user.EmployeeId);
             return orderedData;
+        }
+
+        public List<MyErrand> FilterErrands(List<MyErrand> errandList, string status, string department = null, string investigator = null, string caseNumber = null)
+        {
+            if (!string.IsNullOrWhiteSpace(caseNumber))
+            {
+                errandList = errandList.Where(e => e.RefNumber == caseNumber).ToList();
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(status) && status != "Välj alla")
+                {
+                    errandList = errandList.Where(e => e.StatusName == status).ToList();
+                }
+
+                if (!string.IsNullOrWhiteSpace(department) && department != "Välj alla")
+                {
+                    errandList = errandList.Where(e => e.DepartmentName == department).ToList();
+                }
+
+                if (!string.IsNullOrWhiteSpace(investigator) && investigator != "Välj alla")
+                {
+                    errandList = errandList.Where(e => e.EmployeeName == investigator).ToList();
+                }
+            }
+
+            return errandList;
         }
     }
 }

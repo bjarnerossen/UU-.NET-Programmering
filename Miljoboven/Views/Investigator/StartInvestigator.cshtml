@@ -31,34 +31,11 @@
         </tr>
     </table>
 </form>
-<!-- Message when no errands found -->
-@if (!string.IsNullOrEmpty(ViewBag.Message))
-{
-    <p>@ViewBag.Message</p>
-}
-<!--Nedan ser man en lista på ärenden-->
-<table>
-    <tr>
-        <th>Ärende anmält</th>
-        <th>Ärendenummer</th>
-        <th>Miljöbrott</th>
-        <th>Status</th>
-        <th>Avdelning</th>
-        <th>Handläggare</th>
-    </tr>
 
-    @foreach (MyErrand errand in ViewBag.ErrandList)
+@await Component.InvokeAsync("ErrandsTable", new
     {
-        <tr>
-            <td>@errand.DateOfObservation.ToShortDateString()</td>
-            <td>
-                <a asp-controller="Investigator" asp-action="CrimeInvestigator"
-                    asp-route-id="@errand.ErrandId">@errand.RefNumber</a>
-            </td>
-            <td>@errand.TypeOfCrime</td>
-            <td>@errand.StatusName</td>
-            <td>@errand.DepartmentName</td>
-            <td>@errand.EmployeeName</td>
-        </tr>
-    }
-</table>
+        message = ViewBag.Message,
+        errandList = ViewBag.ErrandList,
+        controller = "Investigator",
+        action = "CrimeInvestigator"
+    })

@@ -22,21 +22,14 @@ namespace Miljoboven.Controllers
             string user = contextAcc.HttpContext.User.Identity.Name;
 
             var errandList = repository.GetErrandListInvestigator(user).ToList();
-            if (!string.IsNullOrWhiteSpace(caseNumber))
-            {
-                errandList = errandList.Where(e => e.RefNumber == caseNumber).ToList();
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(status) && status != "Välj alla")
-                {
-                    errandList = errandList.Where(e => e.StatusName == status).ToList();
-                }
-            }
+
+            errandList = repository.FilterErrands(errandList, status, caseNumber: caseNumber);
+
             if (!errandList.Any())
             {
                 ViewBag.Message = $"Inga ärenden hittades för: \nStatus: {status}";
             }
+
             ViewBag.ErrandList = errandList;
 
             return View(repository);
